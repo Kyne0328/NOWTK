@@ -312,6 +312,9 @@ public partial class Player
 
     [ObservableProperty]
     private string _teamId;
+
+    [ObservableProperty]
+    private bool _isAgentLocked;
 }
 
 [INotifyPropertyChanged]

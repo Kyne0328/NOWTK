@@ -149,7 +149,7 @@ public partial class MatchViewModel : ObservableObject
                 if (newLiveMatch.MatchInfo != null)
                     Match = newLiveMatch.MatchInfo;
 
-                UpdateStats();
+                await UpdateStatsAsync().ConfigureAwait(false);
 
                 Overlay.IsBusy = false;
             }
@@ -159,31 +159,36 @@ public partial class MatchViewModel : ObservableObject
                 GoHomeEvent?.Invoke();
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            // ignored
+            Constants.Log.Error("GetMatchInfoAsync failed: {Exception}", ex);
+            Overlay.IsBusy = false;
+            // Optionally show error to user or take other recovery actions
         }
         finally
         {
             Overlay.IsBusy = false;
         }
-
-        GC.Collect();
     }
 
-    private async void UpdateStats()
+    private async Task UpdateStatsAsync()
     {
-        // List<Task> tasks = new();
         var AllPlayers = LeftPlayerList.Concat(RightPlayerList).ToList();
+        var updateTasks = AllPlayers
+            .Where(player => player.PlayerUiData != null)
+            .Select(player => LiveMatch.GetMatchHistoryAsync(player.PlayerUiData.Puuid))
+            .ToList();
+
+        var results = await Task.WhenAll(updateTasks).ConfigureAwait(false);
+
+        int index = 0;
         foreach (var player in AllPlayers)
         {
-            if (player.PlayerUiData is null)
-                continue;
-            // var t1 = LiveMatch.GetMatchHistoryAsync(player.PlayerUiData.Puuid);
-            // player.MatchHistoryData = t1.Result;
-            player.MatchHistoryData = await LiveMatch
-                .GetMatchHistoryAsync(player.PlayerUiData.Puuid)
-                .ConfigureAwait(false);
+            if (player.PlayerUiData is not null)
+            {
+                player.MatchHistoryData = results[index];
+                index++;
+            }
         }
     }
 

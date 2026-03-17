@@ -168,19 +168,20 @@ public class LiveMatch
         RiotPrePlayer riotPlayer,
         sbyte index,
         Guid[] seasonData,
-        PresencesResponse presencesResponse
+        PresencesResponse presencesResponse,
+        string teamId
     )
     {
         Player player = new();
         try
         {
-            var cardTask = GetCardAsync(riotPlayer.PlayerIdentity.PlayerCardId, index);
+            var agentTask = GetAgentInfoAsync(riotPlayer.CharacterId);
             var historyTask = GetPlayerHistoryAsync(riotPlayer.Subject, seasonData);
             var presenceTask = GetPresenceInfoAsync(riotPlayer.Subject, presencesResponse);
 
-            await Task.WhenAll(cardTask, historyTask, presenceTask).ConfigureAwait(false);
+            await Task.WhenAll(agentTask, historyTask, presenceTask).ConfigureAwait(false);
 
-            player.IdentityData = cardTask.Result;
+            player.IdentityData = agentTask.Result;
             player.RankData = historyTask.Result;
             player.PlayerUiData = presenceTask.Result;
             player.IgnData = await GetIgcUsernameAsync(
@@ -192,8 +193,9 @@ public class LiveMatch
             player.AccountLevel = !riotPlayer.PlayerIdentity.HideAccountLevel
                 ? riotPlayer.PlayerIdentity.AccountLevel.ToString()
                 : "-";
-            player.TeamId = "Blue";
+            player.TeamId = teamId;
             player.Active = Visibility.Visible;
+            player.IsAgentLocked = riotPlayer.CharacterSelectionState == "locked";
         }
         catch (Exception e)
         {
@@ -235,6 +237,8 @@ public class LiveMatch
                 : "-";
             player.TeamId = riotPlayer.TeamId;
             player.Active = Visibility.Visible;
+            // For live matches, agents are always locked/selected
+            player.IsAgentLocked = true;
         }
         catch (Exception e)
         {
@@ -260,10 +264,21 @@ public class LiveMatch
         await Task.WhenAll(sTask, pTask).ConfigureAwait(false);
         sbyte index = 0;
 
+        // Process ally team
         foreach (var riotPlayer in matchIdInfo.AllyTeam.Players)
         {
-            playerTasks.Add(GetPrePlayerInfo(riotPlayer, index, seasonData, presencesResponse));
+            playerTasks.Add(GetPrePlayerInfo(riotPlayer, index, seasonData, presencesResponse, "Blue"));
             index++;
+        }
+
+        // Process enemy team
+        if (matchIdInfo.EnemyTeam != null && matchIdInfo.EnemyTeam.Players != null)
+        {
+            foreach (var riotPlayer in matchIdInfo.EnemyTeam.Players)
+            {
+                playerTasks.Add(GetPrePlayerInfo(riotPlayer, index, seasonData, presencesResponse, "Red"));
+                index++;
+            }
         }
     }
 
