@@ -155,7 +155,7 @@ public class PreMatchResponse
     public PreTeam AllyTeam { get; set; }
 
     [JsonPropertyName("EnemyTeam")]
-    public object EnemyTeam { get; set; }
+    public PreTeam EnemyTeam { get; set; }
 
     [JsonPropertyName("ObserverSubjects")]
     public object[] ObserverSubjects { get; set; }
