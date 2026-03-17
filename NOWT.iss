@@ -3,7 +3,7 @@
 
 [Setup]
 #define MyAppSetupName 'NOWT'
-#define MyAppVersion '1.3.6'
+#define MyAppVersion '1.0.5'
 #define MyAppPublisher 'PWall'
 #define MyAppCopyright 'Soneliem & PWall'
 #define MyAppURL 'https://github.com/Kyne0328/NOWTK'
