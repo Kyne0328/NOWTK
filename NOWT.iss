@@ -6,7 +6,7 @@
 #define MyAppVersion '1.3.6'
 #define MyAppPublisher 'PWall'
 #define MyAppCopyright 'Soneliem & PWall'
-#define MyAppURL 'https://github.com/pwall2222/NOWT'
+#define MyAppURL 'https://github.com/Kyne0328/NOWTK'
 
 AppName={#MyAppSetupName}
 AppVersion={#MyAppVersion}

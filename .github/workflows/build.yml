@@ -49,12 +49,16 @@ jobs:
           Rename-Item ./inno/out/NOWT.exe NOWT-Installer.exe
       - name: Get CHANGELOG
         id: changelog
+        continue-on-error: true
         uses: requarks/changelog-action@v1.8.1
         with:
           token: ${{ github.token }}
           tag: ${{ env.TAG }}
           writeToFile: false
           excludeTypes: chore,ci,build,docs,style
+          # Include non-conventional commits so the step doesn't fail when commit
+          # messages don't follow the conventional commit format (e.g. "Fix ..." vs "fix: ...")
+          includeInvalidCommits: true
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
@@ -63,5 +67,5 @@ jobs:
             ./inno/NOWT.exe
           tag_name: ${{ env.TAG }}
           body: |
-            ![Release downloads](https://img.shields.io/github/downloads/pwall2222/NOWT/${{ env.TAG }}/total)
+            ![Release downloads](https://img.shields.io/github/downloads/Kyne0328/NOWTK/${{ env.TAG }}/total)
             ${{ steps.changelog.outputs.changes }}
