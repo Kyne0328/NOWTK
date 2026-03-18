@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:p="clr-namespace:NOWT.Properties"
 	xmlns:viewmodels="clr-namespace:NOWT.ViewModels"
-	xmlns:fa="http://schemas.fontawesome.com/icons"
+	xmlns:fa="http://schemas.fontawesome.com/icons/fonts"
 	d:DataContext="{d:DesignInstance Type=viewmodels:SettingsViewModel}"
 	d:DesignHeight="754"
 	d:DesignWidth="1536"
@@ -70,11 +70,11 @@
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 				<Button Grid.Column="0" Cursor="Hand" Width="48" Height="48" Margin="14" Command="{Binding DataContext.NavigateHomeCommand, RelativeSource={RelativeSource AncestorType=Window}}" Template="{StaticResource ButtonTemplate}">
-					<fa:FontAwesomeImage PrimaryColor="#FF4655" Icon="Solid_AngleLeft" Margin="10" />
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_AngleLeft" Margin="10" />
 				</Button>
 				<TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16,4" FontSize="26" FontWeight="Bold" FontFamily="{StaticResource Nunito}" Foreground="#FFFFFF" Text="Settings" />
 				<Button Grid.Column="2" Cursor="Hand" Width="48" Height="48" Margin="10" Command="{Binding DataContext.NavigateInfoCommand, RelativeSource={RelativeSource AncestorType=Window}}" Template="{StaticResource ButtonTemplate}">
-					<fa:FontAwesomeImage PrimaryColor="#FF4655" Icon="Solid_Info" Margin="10" />
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Info" Margin="10" />
 				</Button>
 			</Grid>
 		</Border>
