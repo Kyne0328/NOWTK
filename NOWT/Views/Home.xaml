@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
 	x:Class="NOWT.Views.Home"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -46,41 +46,45 @@
 		</Grid.RowDefinitions>
 
 		<!-- ═══════════ TOP NAV BAR ═══════════ -->
-		<Border Grid.Row="0" Background="#1E2140"
+		<Border Grid.Row="0" Background="{StaticResource BgCardBrush}"
 		        CornerRadius="16" Padding="8,4"
-		        BorderBrush="#2A2D52" BorderThickness="1">
+		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="20" ShadowDepth="4" Opacity="0.3" Color="#000000" />
 			</Border.Effect>
 			<Grid Height="56">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 
 				<!-- Settings button -->
-				<Button
-					Grid.Column="0" Cursor="Hand" Width="48" Height="48"
-					HorizontalAlignment="Left" VerticalAlignment="Center"
-					Command="{Binding DataContext.NavigateSettingsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-					Template="{StaticResource ButtonTemplate}">
-					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Gear" Margin="10" />
+				<Button Grid.Column="0" Cursor="Hand" Width="48" Height="48"
+				        HorizontalAlignment="Left" VerticalAlignment="Center"
+				        Command="{Binding DataContext.NavigateSettingsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+				        Template="{StaticResource ButtonTemplate}">
+					<Viewbox>
+						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Gear" Margin="0" />
+					</Viewbox>
 				</Button>
 
 				<!-- Hidden GoMatch button -->
-				<Button
-					Grid.Column="0" x:Name="GoMatch"
-					Command="{Binding DataContext.NavigateMatchCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-					Visibility="Collapsed" />
+				<Button Grid.Column="0" x:Name="GoMatch"
+				        Command="{Binding DataContext.NavigateMatchCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+				        Visibility="Collapsed">
+					<Viewbox>
+						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Gear" Margin="0" />
+					</Viewbox>
+				</Button>
 
 				<!-- "Your Party" title -->
 				<TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
 				           Margin="16,0,0,0"
 				           FontSize="26" FontWeight="Bold"
 				           FontFamily="{StaticResource Nunito}"
-				           Foreground="#FFFFFF"
+				           Foreground="{StaticResource TextPrimaryBrush}"
 				           Text="{x:Static p:Resources.YourParty}" />
 
 				<!-- "Status" title -->
@@ -88,16 +92,17 @@
 				           Margin="0,0,16,0"
 				           FontSize="26" FontWeight="Bold"
 				           FontFamily="{StaticResource Nunito}"
-				           Foreground="#FFFFFF"
+				           Foreground="{StaticResource TextPrimaryBrush}"
 				           Text="{x:Static p:Resources.Status}" />
 
 				<!-- Info button -->
-				<Button
-					Grid.Column="3" Cursor="Hand" Width="48" Height="48"
-					HorizontalAlignment="Right" VerticalAlignment="Center"
-					Command="{Binding DataContext.NavigateInfoCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-					Template="{StaticResource ButtonTemplate}">
-					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Info" Margin="10" />
+				<Button Grid.Column="3" Cursor="Hand" Width="48" Height="48"
+				        HorizontalAlignment="Right" VerticalAlignment="Center"
+				        Command="{Binding DataContext.NavigateInfoCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+				        Template="{StaticResource ButtonTemplate}">
+					<Viewbox>
+						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Info" Margin="0" />
+					</Viewbox>
 				</Button>
 			</Grid>
 		</Border>
@@ -130,17 +135,17 @@
 			<!-- ─── SEPARATOR ─── -->
 			<Border Grid.Column="1" Width="1" Margin="16,24"
 			        VerticalAlignment="Stretch"
-			        Background="#2A2D52"
-			        CornerRadius="1" Opacity="0.5" />
+			        Background="{StaticResource BgGlassBrush}"
+				CornerRadius="1" Opacity="0.5" />
 
 			<!-- ─── RIGHT: Status + Refresh ─── -->
 			<StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="16,0,0,0"
 			            Width="380">
 
 				<!-- ═══ Status Card ═══ -->
-				<Border Background="#1E2140"
+				<Border Background="{StaticResource BgCardBrush}"
 				        CornerRadius="16" Padding="0"
-				        BorderBrush="#2A2D52" BorderThickness="1"
+				        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1"
 				        Margin="0,0,0,16">
 					<Border.Effect>
 						<DropShadowEffect BlurRadius="24" ShadowDepth="4" Opacity="0.25" Color="#000000" />
@@ -161,55 +166,55 @@
 						           FontSize="18" FontWeight="SemiBold"
 						           HorizontalAlignment="Left" VerticalAlignment="Center"
 						           FontFamily="{StaticResource Nunito}"
-						           Foreground="#FFFFFF"
+						           Foreground="{StaticResource TextPrimaryBrush}"
 						           Text="{x:Static p:Resources.Valorant}" />
 						<fa:ImageAwesome Grid.Row="0" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="ValorantStatusView"
-						                 PrimaryColor="#FF4655"
+						                 PrimaryColor="{StaticResource AccentRed}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
 
 						<!-- Row separator -->
 						<Border Grid.Row="0" Grid.ColumnSpan="2"
 						        VerticalAlignment="Bottom" Height="1"
 						        Margin="20,0"
-						        Background="#2A2D52" Opacity="0.4" />
+						        Background="{StaticResource BgGlassBrush}" Opacity="0.4" />
 
 						<!-- Account -->
 						<TextBlock Grid.Row="1" Grid.Column="0" Margin="28,20,16,20"
 						           FontSize="18" FontWeight="SemiBold"
 						           HorizontalAlignment="Left" VerticalAlignment="Center"
 						           FontFamily="{StaticResource Nunito}"
-						           Foreground="#FFFFFF"
+						           Foreground="{StaticResource TextPrimaryBrush}"
 						           Text="{x:Static p:Resources.Account}" />
 						<fa:ImageAwesome Grid.Row="1" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="AccountStatusView"
-						                 PrimaryColor="#FF4655"
+						                 PrimaryColor="{StaticResource AccentRed}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
 
 						<!-- Row separator -->
 						<Border Grid.Row="1" Grid.ColumnSpan="2"
 						        VerticalAlignment="Bottom" Height="1"
 						        Margin="20,0"
-						        Background="#2A2D52" Opacity="0.4" />
+						        Background="{StaticResource BgGlassBrush}" Opacity="0.4" />
 
 						<!-- Match -->
 						<TextBlock Grid.Row="2" Grid.Column="0" Margin="28,20,16,20"
 						           FontSize="18" FontWeight="SemiBold"
 						           HorizontalAlignment="Left" VerticalAlignment="Center"
 						           FontFamily="{StaticResource Nunito}"
-						           Foreground="#FFFFFF"
+						           Foreground="{StaticResource TextPrimaryBrush}"
 						           Text="{x:Static p:Resources.Match}" />
 						<fa:ImageAwesome Grid.Row="2" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="MatchStatusView"
-						                 PrimaryColor="#FF4655"
+						                 PrimaryColor="{StaticResource AccentRed}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
 					</Grid>
 				</Border>
 
 				<!-- ═══ Refresh Card ═══ -->
-				<Border Background="#1E2140"
+				<Border Background="{StaticResource BgCardBrush}"
 				        CornerRadius="16" Padding="0"
-				        BorderBrush="#2A2D52" BorderThickness="1">
+				        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
 					<Border.Effect>
 						<DropShadowEffect BlurRadius="24" ShadowDepth="4" Opacity="0.25" Color="#000000" />
 					</Border.Effect>
@@ -225,17 +230,17 @@
 						            Margin="20,18,20,10">
 							<TextBlock FontSize="18" FontWeight="SemiBold"
 							           VerticalAlignment="Center"
-							           Foreground="#FFFFFF"
+							           Foreground="{StaticResource TextPrimaryBrush}"
 							           FontFamily="{StaticResource Nunito}"
 							           Text="{x:Static p:Resources.Refresh}"
-							           Margin="0,0,16,0" />
+						           Margin="0,0,16,0" />
 
 							<Button Cursor="Hand" Width="48" Height="48"
 							        HorizontalAlignment="Center" VerticalAlignment="Center"
 							        Template="{StaticResource ButtonTemplate}"
 							        Command="{Binding LoadNowCommand}"
 							        Margin="0,0,8,0">
-								<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Rotate" Margin="10" />
+								<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Rotate" Margin="10" />
 							</Button>
 
 							<ToggleButton Cursor="Hand" Width="48" Height="48"
@@ -249,14 +254,14 @@
 										<i:InvokeCommandAction Command="{Binding Path=PassiveLoadAsyncCommand}" />
 									</i:EventTrigger>
 								</i:Interaction.Triggers>
-								<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Pause" Margin="10" />
+								<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Pause" Margin="10" />
 							</ToggleButton>
 						</StackPanel>
 
 						<!-- Separator -->
 						<Border Grid.Row="0" VerticalAlignment="Bottom" Height="1"
 						        Margin="20,0"
-						        Background="#2A2D52" Opacity="0.4" />
+						        Background="{StaticResource BgGlassBrush}" Opacity="0.4" />
 
 						<!-- Row 2: Refreshing in countdown -->
 						<StackPanel Grid.Row="1" Orientation="Horizontal"
@@ -264,14 +269,14 @@
 						            Margin="20,14,20,18">
 							<TextBlock FontSize="16" FontWeight="Normal"
 							           VerticalAlignment="Center"
-							           Foreground="#8B8FA3"
+							           Foreground="{StaticResource TextSecondaryBrush}"
 							           FontFamily="{StaticResource Nunito}"
 							           Text="{x:Static p:Resources.RefreshingIn}"
 							           Margin="0,0,10,0" />
 							<TextBlock FontSize="18" FontWeight="Bold"
 							           VerticalAlignment="Center"
 							           FontFamily="{StaticResource Nunito}"
-							           Foreground="#FF4655"
+							           Foreground="{StaticResource AccentRedBrush}"
 							           Text="{Binding RefreshTime}" />
 						</StackPanel>
 					</Grid>
