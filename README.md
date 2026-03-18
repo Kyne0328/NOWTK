@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/pwall2222/NOWT">
+  <a href="https://github.com/Kyne0328/NOWTK">
     <img src="NOWT/Assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 </p>
@@ -9,10 +9,10 @@
 <p align="center">
   A Windows application to view player ranks and other info in a live Valorant Match</p>
   <p align="center">
-    <img alt="GitHub" src="https://img.shields.io/github/license/pwall2222/NOWT?color=blue">
-    <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/pwall2222/NOWT/total?color=blue">
-    <a href="https://github.com/pwall2222/NOWT/releases/latest/download/NOWT-Installer.exe">
-      <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/pwall2222/NOWT">
+    <img alt="GitHub" src="https://img.shields.io/github/license/Kyne0328/NOWTK?color=blue">
+    <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Kyne0328/NOWTK/total?color=blue">
+    <a href="https://github.com/Kyne0328/NOWTK/releases/latest/download/NOWT-Installer.exe">
+      <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Kyne0328/NOWTK">
     </a>
   </p>
 </p>
@@ -76,7 +76,7 @@ To get the app up and running follow these simple steps.
 
 ### Installation
 
-1. Download [the latest installer](https://github.com/pwall2222/NOWT/releases/latest/download/NOWT-Installer.exe)
+1. Download [the latest installer](https://github.com/Kyne0328/NOWTK/releases/latest/download/NOWT-Installer.exe)
 2. Run the .exe (If a blue box saying "Windows protected your PC" shows up, click `More Info` and then `Run Anyway`)
 3. Follow the steps to install NOWT
 
@@ -88,7 +88,7 @@ To get the app up and running follow these simple steps.
 
 ## Roadmap and Known Bugs
 
-Please check the [issues tab](https://github.com/pwall2222/NOWT/issues) before making a new issue.
+Please check the [issues tab](https://github.com/Kyne0328/NOWTK/issues) before making a new issue.
 
 ## Built With
 
