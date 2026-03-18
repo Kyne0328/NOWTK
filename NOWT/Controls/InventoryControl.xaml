@@ -4,7 +4,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:controls="clr-namespace:NOWT.Controls"
-	xmlns:fa6="http://schemas.fontawesome.com/icons/fonts"
+	xmlns:fa="http://schemas.fontawesome.com/icons/fonts"
 	x:Name="Self" HorizontalAlignment="Stretch"
 	mc:Ignorable="d" Background="Transparent"
 	d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignData SkinData}">
@@ -143,7 +143,7 @@
 			        Click="CloseBtnClick" Cursor="Hand"
 			        Width="36" Height="36"
 			        Template="{StaticResource ButtonTemplate}">
-				<fa6:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Xmark"
+				<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Xmark"
 				                  Width="14" Height="14" />
 			</Button>
 		</Grid>
