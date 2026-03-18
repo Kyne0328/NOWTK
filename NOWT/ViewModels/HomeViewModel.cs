@@ -90,17 +90,17 @@ public partial class HomeViewModel : ObservableObject
             if (NOWT.Views.Home.ValorantStatus != null)
             {
                 NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Question;
-                NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
+                NOWT.Views.Home.ValorantStatus.PrimaryColor = new SolidColorBrush(Color.FromRgb(0, 126, 249));
             }
             if (NOWT.Views.Home.AccountStatus != null)
             {
                 NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Question;
-                NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
+                NOWT.Views.Home.AccountStatus.PrimaryColor = new SolidColorBrush(Color.FromRgb(0, 126, 249));
             }
             if (NOWT.Views.Home.MatchStatus != null)
             {
                 NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Question;
-                NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
+                NOWT.Views.Home.MatchStatus.PrimaryColor = new SolidColorBrush(Color.FromRgb(0, 126, 249));
             }
         });
 
@@ -111,7 +111,7 @@ public partial class HomeViewModel : ObservableObject
                 if (NOWT.Views.Home.ValorantStatus != null)
                 {
                     NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                    NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(50, 226, 178));
+                    NOWT.Views.Home.ValorantStatus.PrimaryColor = new SolidColorBrush(Color.FromRgb(50, 226, 178));
                 }
             });
             if (await Checks.CheckLoginAsync().ConfigureAwait(false))
@@ -121,7 +121,7 @@ public partial class HomeViewModel : ObservableObject
                     if (NOWT.Views.Home.AccountStatus != null)
                     {
                         NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                        NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
+                        NOWT.Views.Home.AccountStatus.PrimaryColor = new SolidColorBrush(
                             Color.FromRgb(50, 226, 178)
                         );
                     }
@@ -133,7 +133,7 @@ public partial class HomeViewModel : ObservableObject
                         if (NOWT.Views.Home.MatchStatus != null)
                         {
                             NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                            NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                            NOWT.Views.Home.MatchStatus.PrimaryColor = new SolidColorBrush(
                                 Color.FromRgb(50, 226, 178)
                             );
                         }
@@ -148,7 +148,7 @@ public partial class HomeViewModel : ObservableObject
                         if (NOWT.Views.Home.MatchStatus != null)
                         {
                             NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                            NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                            NOWT.Views.Home.MatchStatus.PrimaryColor = new SolidColorBrush(
                                 Color.FromRgb(255, 70, 84)
                             );
                         }
@@ -181,7 +181,7 @@ public partial class HomeViewModel : ObservableObject
                         if (NOWT.Views.Home.AccountStatus != null)
                         {
                             NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                            NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
+                            NOWT.Views.Home.AccountStatus.PrimaryColor = new SolidColorBrush(
                                 Color.FromRgb(50, 226, 178)
                             );
                         }
@@ -193,7 +193,7 @@ public partial class HomeViewModel : ObservableObject
                             if (NOWT.Views.Home.MatchStatus != null)
                             {
                                 NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                                NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                                NOWT.Views.Home.MatchStatus.PrimaryColor = new SolidColorBrush(
                                     Color.FromRgb(50, 226, 178)
                                 );
                             }
@@ -208,7 +208,7 @@ public partial class HomeViewModel : ObservableObject
                             if (NOWT.Views.Home.MatchStatus != null)
                             {
                                 NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                                NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                                NOWT.Views.Home.MatchStatus.PrimaryColor = new SolidColorBrush(
                                     Color.FromRgb(255, 70, 84)
                                 );
                             }
@@ -237,14 +237,14 @@ public partial class HomeViewModel : ObservableObject
                         if (NOWT.Views.Home.AccountStatus != null)
                         {
                             NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                            NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
+                            NOWT.Views.Home.AccountStatus.PrimaryColor = new SolidColorBrush(
                                 Color.FromRgb(255, 70, 84)
                             );
                         }
                         if (NOWT.Views.Home.MatchStatus != null)
                         {
                             NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                            NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                            NOWT.Views.Home.MatchStatus.PrimaryColor = new SolidColorBrush(
                                 Color.FromRgb(255, 70, 84)
                             );
                         }
@@ -259,17 +259,17 @@ public partial class HomeViewModel : ObservableObject
                 if (NOWT.Views.Home.ValorantStatus != null)
                 {
                     NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                    NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
+                    NOWT.Views.Home.ValorantStatus.PrimaryColor = new SolidColorBrush(Color.FromRgb(255, 70, 84));
                 }
                 if (NOWT.Views.Home.AccountStatus != null)
                 {
                     NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                    NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
+                    NOWT.Views.Home.AccountStatus.PrimaryColor = new SolidColorBrush(Color.FromRgb(255, 70, 84));
                 }
                 if (NOWT.Views.Home.MatchStatus != null)
                 {
                     NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                    NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
+                    NOWT.Views.Home.MatchStatus.PrimaryColor = new SolidColorBrush(Color.FromRgb(255, 70, 84));
                 }
             });
         }

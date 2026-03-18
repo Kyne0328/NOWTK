@@ -225,7 +225,7 @@ public class LiveMatch
             player.HeadshotPercent = double.TryParse(stats.HeadshotPercent, out var hs) ? hs : 0;
             player.KillDeathRatio = double.TryParse(stats.KillDeathRatio, out var kd) ? kd : 0;
             player.WinRate = 50.0; // Mock or calculate from match history
-            player.LeaderboardPosition = await GetLeaderboardPositionAsync(player.PlayerUuid);
+            player.LeaderboardPosition = await GetLeaderboardPositionAsync(player.PlayerUuid, seasonData[0].ToString());
             player.MatchesPlayedTogether = PlayerHistoryHelper.GetMatchesPlayedTogether(player.PlayerUuid);
             player.LastPlayedTime = PlayerHistoryHelper.GetLastPlayedTime(player.PlayerUuid);
 
@@ -306,7 +306,7 @@ public class LiveMatch
             player.HeadshotPercent = double.TryParse(stats.HeadshotPercent, out var hs) ? hs : 0;
             player.KillDeathRatio = double.TryParse(stats.KillDeathRatio, out var kd) ? kd : 0;
             player.WinRate = 50.0; // Mock or calculate from match history
-            player.LeaderboardPosition = await GetLeaderboardPositionAsync(player.PlayerUuid);
+            player.LeaderboardPosition = await GetLeaderboardPositionAsync(player.PlayerUuid, seasonData[0].ToString());
             player.MatchesPlayedTogether = PlayerHistoryHelper.GetMatchesPlayedTogether(player.PlayerUuid);
             player.LastPlayedTime = PlayerHistoryHelper.GetLastPlayedTime(player.PlayerUuid);
 
@@ -1503,14 +1503,14 @@ public class LiveMatch
             client = new RestClient(
                 $"https://pd.{Constants.Shard}.a.pvp.net/match-details/v1/matches/{matchId}"
             );
-            response = await client.ExecuteGetAsync<MatchDetailsResponse>(request).ConfigureAwait(false);
+            var matchResponse = await client.ExecuteGetAsync<MatchDetailsResponse>(request).ConfigureAwait(false);
             
-            if (!response.IsSuccessful)
+            if (!matchResponse.IsSuccessful)
             {
                 return new PlayerStatsData { HeadshotPercent = "N/A", KillDeathRatio = "N/A" };
             }
 
-            var matchData = response.Data;
+            var matchData = matchResponse.Data;
             
             // Calculate stats
             return CalculatePlayerStats(puuid, matchData);
@@ -1570,12 +1570,12 @@ public class LiveMatch
     }
 
     // Get leaderboard position for a player
-    public static async Task<int> GetLeaderboardPositionAsync(string puuid)
+    public static async Task<int> GetLeaderboardPositionAsync(string puuid, string seasonId)
     {
         try
         {
             var client = new RestClient(
-                $"https://pd.{Constants.Shard}.a.pvp.net/mmr/v1/leaderboards/affinity/{Constants.Shard}/queue/competitive/season/{Constants.SeasonId}?startIndex=0&size=500&query={puuid}"
+                $"https://pd.{Constants.Shard}.a.pvp.net/mmr/v1/leaderboards/affinity/{Constants.Shard}/queue/competitive/season/{seasonId}?startIndex=0&size=500&query={puuid}"
             );
             var request = new RestRequest();
             request.AddHeader("X-Riot-Entitlements-JWT", Constants.EntitlementToken);

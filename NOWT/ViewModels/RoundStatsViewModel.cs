@@ -120,7 +120,7 @@ public partial class RoundStatsViewModel : ObservableObject, IDisposable
             // For now, use mock data
             await LoadMockRoundStatsAsync();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             // Handle error
         }
@@ -141,7 +141,7 @@ public partial class RoundStatsViewModel : ObservableObject, IDisposable
     private async Task LoadMockRoundStatsAsync()
     {
         // This method now loads real data from Riot API
-        await Task.Run(async () =>
+        await Task.Run(() =>
         {
             try
             {
