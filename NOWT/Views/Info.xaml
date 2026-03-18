@@ -118,7 +118,7 @@
 				        Height="120" Cursor="Hand" HorizontalAlignment="Center"
 				        RenderOptions.BitmapScalingMode="HighQuality"
 				        Click="ImageClickAsync"
-				        Tag="https://github.com/pwall2222/NOWT/">
+				        Tag="https://github.com/Kyne0328/NOWTK/">
 					<Image Source="/Assets/logo.png" />
 					<Button.Effect>
 						<DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.5"
@@ -151,7 +151,7 @@
 				           FontSize="13" FontWeight="Normal"
 				           FontFamily="{StaticResource Nunito}"
 				           Foreground="#555870"
-				           Text="github.com/pwall2222/NOWT" />
+				           Text="github.com/Kyne0328/NOWTK" />
 			</StackPanel>
 		</Grid>
 	</Grid>
