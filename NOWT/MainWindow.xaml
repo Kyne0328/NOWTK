@@ -1,4 +1,4 @@
-﻿<Window
+<Window
 	x:Class="NOWT.MainWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,11 +6,11 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:waiua="clr-namespace:NOWT"
 	xmlns:viewModels="clr-namespace:NOWT.ViewModels"
-	Title="New Opponent Who This? (NOWT)"
+	Title="NOWT"
 	d:DesignHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}"
 	d:DesignWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
 	d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
-	Background="#2E3349"
+	Background="{StaticResource BgDeepBrush}"
 	UseLayoutRounding="True"
 	mc:Ignorable="d">
 	<waiua:ViewModelPresenter ViewModel="{Binding SelectedViewModel}" />

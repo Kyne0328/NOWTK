@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="NOWT.Controls.InventoryControl"
+<UserControl x:Class="NOWT.Controls.InventoryControl"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,9 +8,10 @@
 	x:Name="Self" HorizontalAlignment="Stretch"
 	mc:Ignorable="d" Background="Transparent"
 	d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignData SkinData}">
-	<Border Background="#252A40" CornerRadius="20" Margin="10" Padding="10">
+	<Border Background="{StaticResource BgCardBrush}" CornerRadius="20" Margin="10" Padding="12"
+	        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
 		<Border.Effect>
-			<DropShadowEffect BlurRadius="5" ShadowDepth="3" />
+			<DropShadowEffect BlurRadius="40" ShadowDepth="0" Opacity="0.5" Color="#000000" />
 		</Border.Effect>
 		<Grid>
 			<Grid.ColumnDefinitions>
@@ -32,7 +33,10 @@
 
 			<TextBlock Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0"
 				Text="{Binding Username, ElementName=Self}"
-				FontSize="30" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"
+				FontSize="26" FontWeight="Bold"
+				FontFamily="{StaticResource Nunito}"
+				Foreground="{StaticResource AccentRedBrush}"
+				HorizontalAlignment="Center"
 				VerticalAlignment="Center" Margin="10" />
 
 			<controls:InventoryEntryControl
@@ -41,13 +45,11 @@
 				Image="{Binding SkinDataObject.LargeCardImage, ElementName=Self}"
 				TooltipName="{Binding SkinDataObject.CardName, ElementName=Self}" />
 			<controls:InventoryEntryControl
-				Grid.Column="1"
-				Grid.Row="4"
+				Grid.Column="1" Grid.Row="4"
 				Image="{Binding SkinDataObject.Spray1Image, ElementName=Self}"
 				TooltipName="{Binding SkinDataObject.Spray1Name, ElementName=Self}" />
 			<controls:InventoryEntryControl
-				Grid.Column="1"
-				Grid.Row="5"
+				Grid.Column="1" Grid.Row="5"
 				Image="{Binding SkinDataObject.Spray2Image, ElementName=Self}"
 				TooltipName="{Binding SkinDataObject.Spray2Name, ElementName=Self}" />
 			<controls:InventoryEntryControl
@@ -96,6 +98,10 @@
 				Grid.Column="3" Grid.Row="4"
 				Image="{Binding SkinDataObject.JudgeImage, ElementName=Self}"
 				TooltipName="{Binding SkinDataObject.JudgeName, ElementName=Self}" />
+			<controls:InventoryEntryControl
+				Grid.Column="3" Grid.Row="5"
+				Image="{Binding SkinDataObject.MeleeImage, ElementName=Self}"
+				TooltipName="{Binding SkinDataObject.MeleeName, ElementName=Self}" />
 
 			<controls:InventoryEntryControl
 				Grid.Column="4" Grid.Row="1"
@@ -115,41 +121,31 @@
 				TooltipName="{Binding SkinDataObject.VandalName, ElementName=Self}" />
 
 			<controls:InventoryEntryControl
-				Grid.Column="5" Grid.Row="0"
+				Grid.Column="5" Grid.Row="1"
 				Image="{Binding SkinDataObject.MarshalImage, ElementName=Self}"
 				TooltipName="{Binding SkinDataObject.MarshalName, ElementName=Self}" />
-
-			<controls:InventoryEntryControl
-				Grid.Column="5" Grid.Row="1"
-				Image="{Binding SkinDataObject.OutlawImage, ElementName=Self}"
-				TooltipName="{Binding SkinDataObject.OutlawName, ElementName=Self}" />
-
 			<controls:InventoryEntryControl
 				Grid.Column="5" Grid.Row="2"
 				Image="{Binding SkinDataObject.OperatorImage, ElementName=Self}"
 				TooltipName="{Binding SkinDataObject.OperatorName, ElementName=Self}" />
-
 			<controls:InventoryEntryControl
 				Grid.Column="5" Grid.Row="3"
 				Image="{Binding SkinDataObject.AresImage, ElementName=Self}"
 				TooltipName="{Binding SkinDataObject.AresName, ElementName=Self}" />
-
 			<controls:InventoryEntryControl
 				Grid.Column="5" Grid.Row="4"
 				Image="{Binding SkinDataObject.OdinImage, ElementName=Self}"
 				TooltipName="{Binding SkinDataObject.OdinName, ElementName=Self}" />
 
-			<controls:InventoryEntryControl
-				Grid.Column="5" Grid.Row="5"
-				Image="{Binding SkinDataObject.MeleeImage, ElementName=Self}"
-				TooltipName="{Binding SkinDataObject.MeleeName, ElementName=Self}" />
-
-			<Button
-				Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" Cursor="Hand" Click="CloseBtnClick"
-				Template="{StaticResource ButtonTemplate}" Margin="10" Padding="20">
-				<fa6:ImageAwesome PrimaryColor="#007EF9" Icon="Solid_Xmark" Margin="10" />
+			<!-- Close Button -->
+			<Button Grid.Column="5" Grid.Row="0" HorizontalAlignment="Right"
+			        VerticalAlignment="Top" Margin="0,4,4,0"
+			        Click="CloseButton_Click" Cursor="Hand"
+			        Width="36" Height="36"
+			        Template="{StaticResource ButtonTemplate}">
+				<fa6:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Xmark"
+				                  Width="14" Height="14" />
 			</Button>
-
 		</Grid>
 	</Border>
 </UserControl>
