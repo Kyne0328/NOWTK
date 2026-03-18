@@ -249,14 +249,5 @@
 			<Setter Property="Padding" Value="10,6" />
 			<Setter Property="HasDropShadow" Value="True" />
 		</Style>
-
-									</Thumb.Style>
-								</Thumb>
-							</Track.Thumb>
-						</Track>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
 	</Application.Resources>
 </Application>
