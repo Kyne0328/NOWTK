@@ -16,7 +16,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
         <ApplicationIcon>logo.ico</ApplicationIcon>
-        <Version>2.0.19</Version>
+        <Version>2.0.20</Version>
         <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
         <StartupObject>NOWT.App</StartupObject>
         <Description>A Windows app to view player ranks and stats in a live Valorant Match</Description>

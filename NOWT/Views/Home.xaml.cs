@@ -2,16 +2,16 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using FontAwesome6;
+using FontAwesome6.Svg;
 using NOWT.ViewModels;
 
 namespace NOWT.Views;
 
 public partial class Home : UserControl
 {
-    public static ImageAwesome ValorantStatus;
-    public static ImageAwesome AccountStatus;
-    public static ImageAwesome MatchStatus;
+    public static SvgAwesome ValorantStatus;
+    public static SvgAwesome AccountStatus;
+    public static SvgAwesome MatchStatus;
 
     private HomeViewModel? _viewModel;
 
