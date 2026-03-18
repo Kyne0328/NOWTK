@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
@@ -83,43 +83,60 @@ public partial class HomeViewModel : ObservableObject
         CountdownTime--;
     }
 
-    [ICommand]
     private async Task UpdateChecksAsync(bool forcePartyUpdate)
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            if (Home != null) NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Question;
-            if (Home != null) NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
-            if (Home != null) NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Question;
-            if (Home != null) NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
-            if (Home != null) NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Question;
-            if (Home != null) NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
+            if (NOWT.Views.Home.ValorantStatus != null)
+            {
+                NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Question;
+                NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
+            }
+            if (NOWT.Views.Home.AccountStatus != null)
+            {
+                NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Question;
+                NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
+            }
+            if (NOWT.Views.Home.MatchStatus != null)
+            {
+                NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Question;
+                NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 126, 249));
+            }
         });
 
         if (await Checks.CheckLocalAsync().ConfigureAwait(false))
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                if (Home != null) NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                if (Home != null) NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(50, 226, 178));
+                if (NOWT.Views.Home.ValorantStatus != null)
+                {
+                    NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Check;
+                    NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(50, 226, 178));
+                }
             });
             if (await Checks.CheckLoginAsync().ConfigureAwait(false))
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    if (Home != null) NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                    if (Home != null) NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
-                        Color.FromRgb(50, 226, 178)
-                    );
+                    if (NOWT.Views.Home.AccountStatus != null)
+                    {
+                        NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Check;
+                        NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
+                            Color.FromRgb(50, 226, 178)
+                        );
+                    }
                 });
                 if (await Checks.CheckMatchAsync().ConfigureAwait(false))
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        if (Home != null) NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                        if (Home != null) NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
-                            Color.FromRgb(50, 226, 178)
-                        );
+                        if (NOWT.Views.Home.MatchStatus != null)
+                        {
+                            NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Check;
+                            NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                                Color.FromRgb(50, 226, 178)
+                            );
+                        }
                     });
                     CountTimer?.Stop();
                     GoMatchEvent?.Invoke();
@@ -128,10 +145,13 @@ public partial class HomeViewModel : ObservableObject
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        if (Home != null) NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                        if (Home != null) NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
-                            Color.FromRgb(255, 70, 84)
-                        );
+                        if (NOWT.Views.Home.MatchStatus != null)
+                        {
+                            NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
+                            NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                                Color.FromRgb(255, 70, 84)
+                            );
+                        }
                     });
                     if (forcePartyUpdate)
                     {
@@ -158,19 +178,25 @@ public partial class HomeViewModel : ObservableObject
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        if (Home != null) NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                        if (Home != null) NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
-                            Color.FromRgb(50, 226, 178)
-                        );
+                        if (NOWT.Views.Home.AccountStatus != null)
+                        {
+                            NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Check;
+                            NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
+                                Color.FromRgb(50, 226, 178)
+                            );
+                        }
                     });
                     if (await Checks.CheckMatchAsync().ConfigureAwait(false))
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            if (Home != null) NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Check;
-                            if (Home != null) NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
-                                Color.FromRgb(50, 226, 178)
-                            );
+                            if (NOWT.Views.Home.MatchStatus != null)
+                            {
+                                NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Check;
+                                NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                                    Color.FromRgb(50, 226, 178)
+                                );
+                            }
                         });
                         CountTimer?.Stop();
                         GoMatchEvent?.Invoke();
@@ -179,10 +205,13 @@ public partial class HomeViewModel : ObservableObject
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            if (Home != null) NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                            if (Home != null) NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
-                                Color.FromRgb(255, 70, 84)
-                            );
+                            if (NOWT.Views.Home.MatchStatus != null)
+                            {
+                                NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
+                                NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                                    Color.FromRgb(255, 70, 84)
+                                );
+                            }
                         });
                         if (forcePartyUpdate)
                         {
@@ -205,14 +234,20 @@ public partial class HomeViewModel : ObservableObject
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        if (Home != null) NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                        if (Home != null) NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
-                            Color.FromRgb(255, 70, 84)
-                        );
-                        if (Home != null) NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                        if (Home != null) NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
-                            Color.FromRgb(255, 70, 84)
-                        );
+                        if (NOWT.Views.Home.AccountStatus != null)
+                        {
+                            NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
+                            NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(
+                                Color.FromRgb(255, 70, 84)
+                            );
+                        }
+                        if (NOWT.Views.Home.MatchStatus != null)
+                        {
+                            NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
+                            NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(
+                                Color.FromRgb(255, 70, 84)
+                            );
+                        }
                     });
                 }
             }
@@ -221,12 +256,21 @@ public partial class HomeViewModel : ObservableObject
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                if (Home != null) NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                if (Home != null) NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
-                if (Home != null) NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                if (Home != null) NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
-                if (Home != null) NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
-                if (Home != null) NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
+                if (NOWT.Views.Home.ValorantStatus != null)
+                {
+                    NOWT.Views.Home.ValorantStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
+                    NOWT.Views.Home.ValorantStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
+                }
+                if (NOWT.Views.Home.AccountStatus != null)
+                {
+                    NOWT.Views.Home.AccountStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
+                    NOWT.Views.Home.AccountStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
+                }
+                if (NOWT.Views.Home.MatchStatus != null)
+                {
+                    NOWT.Views.Home.MatchStatus.Icon = EFontAwesomeIcon.Solid_Xmark;
+                    NOWT.Views.Home.MatchStatus.Foreground = new SolidColorBrush(Color.FromRgb(255, 70, 84));
+                }
             });
         }
     }
