@@ -8,7 +8,7 @@
 	xmlns:viewmodels="clr-namespace:NOWT.ViewModels"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:p="clr-namespace:NOWT.Properties"
-	xmlns:fa="http://schemas.fontawesome.com/icons/fonts"
+	xmlns:fa="http://schemas.fontawesome.com/icons"
 	d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
 	d:DesignHeight="754"
 	d:DesignWidth="1536"
@@ -63,7 +63,7 @@
 				        Command="{Binding DataContext.NavigateSettingsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
 					<Viewbox>
-						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Gear" Margin="0" />
+						<fa:FontAwesomeImage PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Gear" Margin="0" />
 					</Viewbox>
 				</Button>
 
@@ -72,7 +72,7 @@
 				        Command="{Binding DataContext.NavigateMatchCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Visibility="Collapsed">
 					<Viewbox>
-						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Gear" Margin="0" />
+						<fa:FontAwesomeImage PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Gear" Margin="0" />
 					</Viewbox>
 				</Button>
 
@@ -98,7 +98,7 @@
 				        Command="{Binding DataContext.NavigateInfoCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
 					<Viewbox>
-						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Info" Margin="0" />
+						<fa:FontAwesomeImage PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Info" Margin="0" />
 					</Viewbox>
 				</Button>
 			</Grid>
@@ -165,7 +165,7 @@
 						           FontFamily="{StaticResource Nunito}"
 						           Foreground="{StaticResource TextPrimaryBrush}"
 						           Text="{x:Static p:Resources.Valorant}" />
-						<fa:ImageAwesome Grid.Row="0" Grid.Column="1"
+						<fa:FontAwesomeImage Grid.Row="0" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="ValorantStatusView"
 						                 PrimaryColor="{StaticResource AccentRedBrush}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
@@ -183,7 +183,7 @@
 						           FontFamily="{StaticResource Nunito}"
 						           Foreground="{StaticResource TextPrimaryBrush}"
 						           Text="{x:Static p:Resources.Account}" />
-						<fa:ImageAwesome Grid.Row="1" Grid.Column="1"
+						<fa:FontAwesomeImage Grid.Row="1" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="AccountStatusView"
 						                 PrimaryColor="{StaticResource AccentRedBrush}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
@@ -201,7 +201,7 @@
 						           FontFamily="{StaticResource Nunito}"
 						           Foreground="{StaticResource TextPrimaryBrush}"
 						           Text="{x:Static p:Resources.Match}" />
-						<fa:ImageAwesome Grid.Row="2" Grid.Column="1"
+						<fa:FontAwesomeImage Grid.Row="2" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="MatchStatusView"
 						                 PrimaryColor="{StaticResource AccentRedBrush}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
@@ -237,7 +237,7 @@
 							        Template="{StaticResource ButtonTemplate}"
 							        Command="{Binding LoadNowCommand}"
 							        Margin="0,0,8,0">
-								<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Rotate" Margin="10" />
+								<fa:FontAwesomeImage PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Rotate" Margin="10" />
 							</Button>
 
 							<ToggleButton Cursor="Hand" Width="48" Height="48"
@@ -251,7 +251,7 @@
 										<i:InvokeCommandAction Command="{Binding Path=PassiveLoadAsyncCommand}" />
 									</i:EventTrigger>
 								</i:Interaction.Triggers>
-								<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Pause" Margin="10" />
+								<fa:FontAwesomeImage PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Pause" Margin="10" />
 							</ToggleButton>
 						</StackPanel>
 

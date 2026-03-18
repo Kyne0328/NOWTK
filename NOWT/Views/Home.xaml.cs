@@ -2,7 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using FontAwesome.WPF;
+using FontAwesome6;
 using NOWT.ViewModels;
 
 namespace NOWT.Views;
