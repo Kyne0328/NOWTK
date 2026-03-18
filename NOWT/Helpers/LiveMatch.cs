@@ -1492,7 +1492,7 @@ public class LiveMatch
             
             var response = await client.ExecuteGetAsync<CompetitiveUpdatesResponse>(request).ConfigureAwait(false);
             
-            if (!response.IsSuccessful || response.Data?.Matches == null || response.Data.Matches.Count == 0)
+            if (!response.IsSuccessful || response.Data?.Matches == null || response.Data.Matches.Length == 0)
             {
                 return new PlayerStatsData { HeadshotPercent = "N/A", KillDeathRatio = "N/A" };
             }
@@ -1627,8 +1627,8 @@ public class LiveMatch
                 history.Add(new MatchHistoryEntry
                 {
                     MatchId = match.MatchId.ToString(),
-                    Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(match.GameStartTime).DateTime,
-                    Won = match.Won
+                    Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(match.MatchStartTime).DateTime,
+                    Won = match.RankedRatingEarned > 0
                 });
             }
 

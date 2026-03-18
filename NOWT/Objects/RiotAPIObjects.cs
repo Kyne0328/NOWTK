@@ -1181,33 +1181,6 @@ public class PlayerStatsData
     public string KillDeathRatio { get; set; }
 }
 
-// Competitive updates response for getting recent matches
-public class CompetitiveUpdatesResponse
-{
-    [JsonPropertyName("Subject")]
-    public Guid Subject { get; set; }
-
-    [JsonPropertyName("Version")]
-    public long Version { get; set; }
-
-    [JsonPropertyName("Matches")]
-    public List<CompetitiveUpdateMatch> Matches { get; set; }
-}
-
-public class CompetitiveUpdateMatch
-{
-    [JsonPropertyName("MatchID")]
-    public Guid MatchId { get; set; }
-
-    [JsonPropertyName("GameStartTime")]
-    public long GameStartTime { get; set; }
-
-    [JsonPropertyName("Won")]
-    public bool Won { get; set; }
-
-    [JsonPropertyName("RankedRatingEarned")]
-    public int RankedRatingEarned { get; set; }
-}
 
 // Match details response for getting player stats
 public class MatchDetailsResponse

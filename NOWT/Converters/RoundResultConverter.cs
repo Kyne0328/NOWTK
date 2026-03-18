@@ -6,7 +6,7 @@ using NOWT.Objects;
 
 namespace NOWT.Converters;
 
-[ValueConversion(typeof(RoundStat), typeof(FontAwesomeIcon))]
+[ValueConversion(typeof(RoundStat), typeof(EFontAwesomeIcon))]
 public class RoundResultConverter : IValueConverter
 {
     #region IValueConverter Members
@@ -14,15 +14,15 @@ public class RoundResultConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (value is not RoundStat roundStat)
-            return FontAwesomeIcon.None;
+            return EFontAwesomeIcon.None;
 
         // Determine result based on kills/deaths comparison
         if (roundStat.PlayerKills > roundStat.OpponentKills)
-            return FontAwesomeIcon.Solid_CheckCircle; // Win
+            return EFontAwesomeIcon.Solid_Check; // Win
         else if (roundStat.PlayerKills < roundStat.OpponentKills)
-            return FontAwesomeIcon.Solid_TimesCircle; // Loss
+            return EFontAwesomeIcon.Solid_Xmark; // Loss
         else
-            return FontAwesomeIcon.Solid_Equals; // Draw/Tie
+            return EFontAwesomeIcon.Solid_Equals; // Draw/Tie
 
     }
 
