@@ -10,7 +10,7 @@
 	d:DesignHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}"
 	d:DesignWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
 	d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
-	Background="{StaticResource BgDeepBrush}"
+	Background="{DynamicResource BgDeepBrush}"
 	UseLayoutRounding="True"
 	mc:Ignorable="d">
 	<waiua:ViewModelPresenter ViewModel="{Binding SelectedViewModel}" />

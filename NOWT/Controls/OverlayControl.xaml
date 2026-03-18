@@ -13,9 +13,9 @@
 		<Border Background="#CC0F1123" />
 
 		<Border VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Height="Auto"
-		        Background="{StaticResource BgCardBrush}" Padding="32"
+		        Background="#1E2140" Padding="32"
 		        CornerRadius="20"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="40" ShadowDepth="0" Opacity="0.5" Color="#000000" />
 			</Border.Effect>
@@ -23,17 +23,17 @@
 				<TextBlock Text="{Binding Overlay.Header, ElementName=Self}"
 				           FontSize="24" FontWeight="Bold"
 				           FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource AccentRedBrush}"
+				           Foreground="#FF4655"
 				           Padding="5" HorizontalAlignment="Center" />
 
-				<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}"
+				<fa:ImageAwesome PrimaryColor="#FF4655"
 				                 Icon="Solid_YinYang" Spin="True" SpinDuration="2"
 				                 Height="80" Width="80" Margin="0,16" />
 
 				<TextBlock Margin="5,0,5,12"
 				           Text="{Binding Overlay.Content, ElementName=Self}"
 				           FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextSecondaryBrush}"
+				           Foreground="#8B8FA3"
 				           FontSize="14" HorizontalAlignment="Center" />
 
 				<ProgressBar Style="{DynamicResource CustomProgressBar}"

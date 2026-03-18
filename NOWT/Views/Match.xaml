@@ -48,9 +48,9 @@
 		</Grid.RowDefinitions>
 
 		<!-- ═══════════ GLASSMORPHIC NAV BAR ═══════════ -->
-		<Border Grid.Row="0" Background="{StaticResource BgCardBrush}"
+		<Border Grid.Row="0" Background="#1E2140"
 		        CornerRadius="16" Padding="8,4"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="20" ShadowDepth="4" Opacity="0.3" Color="#000000" />
 			</Border.Effect>
@@ -70,14 +70,14 @@
 				<Button Grid.Column="0" x:Name="GoHome" Width="48" Height="48" Margin="4"
 				        Command="{Binding DataContext.NavigateHomeCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
-					<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_AngleLeft" Margin="10" />
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_AngleLeft" Margin="10" />
 				</Button>
 
 				<!-- Settings -->
 				<Button Grid.Column="1" Width="48" Height="48" Margin="4"
 				        Command="{Binding DataContext.NavigateSettingsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
-					<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Gear" Margin="10" />
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Gear" Margin="10" />
 				</Button>
 
 				<!-- Refresh -->
@@ -85,7 +85,7 @@
 				        IsEnabled="{Binding Path=Overlay.IsBusy, Converter={StaticResource InverseBooleanConverter}}"
 				        Command="{Binding GetMatchInfoCommand}"
 				        Template="{StaticResource ButtonTemplate}">
-					<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Rotate" Margin="10" />
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Rotate" Margin="10" />
 				</Button>
 
 				<!-- Pause -->
@@ -99,24 +99,24 @@
 							<i:InvokeCommandAction Command="{Binding Path=PassiveLoadAsyncCommand}" />
 						</i:EventTrigger>
 					</i:Interaction.Triggers>
-					<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Pause" Margin="10" />
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Pause" Margin="10" />
 				</ToggleButton>
 
 				<!-- Countdown -->
 				<TextBlock Grid.Column="4" Margin="16,0,4,0"
 				           FontSize="15" VerticalAlignment="Center"
 				           FontWeight="Normal" FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextSecondaryBrush}"
+				           Foreground="#8B8FA3"
 				           Text="{x:Static p:Resources.RefreshingIn}" />
 				<TextBlock Grid.Column="5" Margin="4,0,8,0"
 				           FontSize="16" VerticalAlignment="Center"
 				           FontWeight="Bold" FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource AccentRedBrush}"
+				           Foreground="#FF4655"
 				           Text="{Binding RefreshTime}" />
 
 				<!-- Game Mode Pill -->
 				<Border Grid.Column="6" HorizontalAlignment="Right"
-				        Background="{StaticResource BgGlassBrush}"
+				        Background="#2A2D52"
 				        CornerRadius="14" Padding="12,4" Margin="4"
 				        VerticalAlignment="Center">
 					<StackPanel Orientation="Horizontal">
@@ -124,7 +124,7 @@
 						       RenderOptions.BitmapScalingMode="HighQuality" />
 						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="16" FontWeight="SemiBold"
 						           Margin="8,0,0,0"
-						           Foreground="{StaticResource TextPrimaryBrush}"
+						           Foreground="#FFFFFF"
 						           HorizontalAlignment="Center" VerticalAlignment="Center"
 						           Text="{Binding Path=Match.GameMode}" />
 					</StackPanel>
@@ -147,7 +147,7 @@
 						</Border.Background>
 						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="18" FontWeight="Bold"
 						           Margin="16,0"
-						           Foreground="{StaticResource TextPrimaryBrush}"
+						           Foreground="#FFFFFF"
 						           HorizontalAlignment="Left" VerticalAlignment="Center"
 						           Text="{Binding Path=Match.Map}" />
 					</Border>

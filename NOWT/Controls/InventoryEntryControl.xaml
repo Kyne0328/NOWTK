@@ -6,8 +6,8 @@
              x:Name="Self"
              mc:Ignorable="d"
              d:DesignHeight="100" d:DesignWidth="200">
-	<Border Background="{StaticResource BgDarkBrush}" CornerRadius="14" Margin="6" Padding="12"
-	        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+	<Border Background="#161830" CornerRadius="14" Margin="6" Padding="12"
+	        BorderBrush="#2A2D52" BorderThickness="1">
 		<Image Source="{Binding Image, ElementName=Self}"
 		       RenderOptions.BitmapScalingMode="HighQuality"
 		       ToolTip="{Binding TooltipName, ElementName=Self}"

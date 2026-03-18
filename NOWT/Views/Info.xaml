@@ -16,12 +16,12 @@
 		<Style TargetType="ToolTip">
 			<Setter Property="Background">
 				<Setter.Value>
-					<SolidColorBrush Color="{StaticResource BgCard}" />
+					<SolidColorBrush Color="#1E2140" />
 				</Setter.Value>
 			</Setter>
 			<Setter Property="Foreground">
 				<Setter.Value>
-					<SolidColorBrush Color="{StaticResource TextPrimary}" />
+					<SolidColorBrush Color="#FFFFFF" />
 				</Setter.Value>
 			</Setter>
 			<Setter Property="FontFamily" Value="{StaticResource Nunito}" />
@@ -29,7 +29,7 @@
 			<Setter Property="BorderThickness" Value="1" />
 			<Setter Property="BorderBrush">
 				<Setter.Value>
-					<SolidColorBrush Color="{StaticResource BgGlass}" />
+					<SolidColorBrush Color="#2A2D52" />
 				</Setter.Value>
 			</Setter>
 			<Setter Property="Padding" Value="10,6" />
@@ -56,9 +56,9 @@
 		</Grid.RowDefinitions>
 
 		<!-- ═══════════ TOP NAV BAR ═══════════ -->
-		<Border Grid.Row="0" Background="{StaticResource BgCardBrush}"
+		<Border Grid.Row="0" Background="#1E2140"
 		        CornerRadius="16" Padding="8,4"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="20" ShadowDepth="4" Opacity="0.3" Color="#000000" />
 			</Border.Effect>
@@ -72,7 +72,7 @@
 				        ToolTip="{x:Static p:Resources.SettingsTitle}" ToolTipService.InitialShowDelay="0"
 				        Command="{Binding DataContext.NavigateSettingsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
-					<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Gear" Margin="10" />
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Gear" Margin="10" />
 				</Button>
 				<Button Grid.Column="1" Cursor="Hand" Margin="16,4"
 				        ToolTip="{x:Static p:Resources.RefreshMatch}" ToolTipService.InitialShowDelay="0"
@@ -81,11 +81,11 @@
 					<Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
 						<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
 						           FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-						           Foreground="{StaticResource AccentRedBrush}"
+						           Foreground="#FF4655"
 						           Text="{x:Static p:Resources.Home}" />
 					</Viewbox>
 				</Button>
-				<fa:ImageAwesome Grid.Column="2" PrimaryColor="{StaticResource AccentRed}"
+				<fa:ImageAwesome Grid.Column="2" PrimaryColor="#FF4655"
 				                 Icon="Solid_Info" Margin="14" Width="24" Height="24" />
 			</Grid>
 		</Border>
@@ -97,7 +97,7 @@
 			         Margin="0,-40,0,0" Opacity="0.08">
 				<Ellipse.Fill>
 					<RadialGradientBrush>
-						<GradientStop Color="{StaticResource AccentRed}" Offset="0" />
+						<GradientStop Color="#FF4655" Offset="0" />
 						<GradientStop Color="Transparent" Offset="1" />
 					</RadialGradientBrush>
 				</Ellipse.Fill>
@@ -106,7 +106,7 @@
 			         Margin="100,60,0,0" Opacity="0.05">
 				<Ellipse.Fill>
 					<RadialGradientBrush>
-						<GradientStop Color="{StaticResource AccentTeal}" Offset="0" />
+						<GradientStop Color="#32E2B2" Offset="0" />
 						<GradientStop Color="Transparent" Offset="1" />
 					</RadialGradientBrush>
 				</Ellipse.Fill>
@@ -122,14 +122,14 @@
 					<Image Source="/Assets/logo.png" />
 					<Button.Effect>
 						<DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.5"
-						                  Color="{StaticResource AccentRed}" />
+						                  Color="#FF4655" />
 					</Button.Effect>
 				</Button>
 
 				<TextBlock HorizontalAlignment="Center" Margin="0,16,0,0"
 				           FontSize="52" FontWeight="Bold"
 				           FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextPrimaryBrush}"
+				           Foreground="#FFFFFF"
 				           TextWrapping="Wrap">
 					NOWT
 				</TextBlock>
@@ -137,20 +137,20 @@
 				<TextBlock HorizontalAlignment="Center" Margin="0,4,0,0"
 				           FontSize="22" FontWeight="SemiBold"
 				           FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource AccentRedBrush}"
+				           Foreground="#FF4655"
 				           Text="New Opponent Who This?"
 				           TextWrapping="Wrap" />
 
 				<!-- Accent line -->
 				<Border Width="60" Height="3" CornerRadius="2" Margin="0,16,0,0"
 				        HorizontalAlignment="Center"
-				        Background="{StaticResource AccentRedBrush}" Opacity="0.6" />
+				        Background="#FF4655" Opacity="0.6" />
 
 				<!-- Subtle link -->
 				<TextBlock HorizontalAlignment="Center" Margin="0,20,0,0"
 				           FontSize="13" FontWeight="Normal"
 				           FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextMutedBrush}"
+				           Foreground="#555870"
 				           Text="github.com/pwall2222/NOWT" />
 			</StackPanel>
 		</Grid>

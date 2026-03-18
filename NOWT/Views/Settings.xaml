@@ -21,11 +21,11 @@
 					<ColumnDefinition Width="28" />
 				</Grid.ColumnDefinitions>
 				<Border x:Name="Border" Grid.ColumnSpan="2"
-				        Background="{StaticResource BgGlassBrush}"
-				        BorderBrush="{StaticResource BgGlassBrush}"
+				        Background="#2A2D52"
+				        BorderBrush="#2A2D52"
 				        BorderThickness="1" CornerRadius="8" />
 				<Border Grid.Column="0" Margin="1"
-				        Background="{StaticResource BgGlassBrush}"
+				        Background="#2A2D52"
 				        BorderThickness="0" CornerRadius="8" />
 				<Path x:Name="Arrow" Grid.Column="1"
 				      HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -73,8 +73,8 @@
 								<Grid Name="DropDown" MinWidth="{TemplateBinding ActualWidth}"
 								      MaxHeight="{TemplateBinding MaxDropDownHeight}" SnapsToDevicePixels="True">
 									<Border x:Name="DropDownBorder"
-									        Background="{StaticResource BgCardBrush}"
-									        BorderBrush="{StaticResource BgGlassBrush}"
+									        Background="#1E2140"
+									        BorderBrush="#2A2D52"
 									        BorderThickness="1" CornerRadius="8" />
 									<ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
 										<StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
@@ -122,7 +122,7 @@
 							<Trigger Property="IsHighlighted" Value="true">
 								<Setter TargetName="Border" Property="Background">
 									<Setter.Value>
-										<SolidColorBrush Color="{StaticResource BgCardHover}" />
+										<SolidColorBrush Color="#252850" />
 									</Setter.Value>
 								</Setter>
 							</Trigger>
@@ -143,18 +143,18 @@
 					<ControlTemplate TargetType="Button">
 						<Border x:Name="Bd" CornerRadius="10" Padding="16,8"
 						        Background="Transparent"
-						        BorderBrush="{StaticResource TextMutedBrush}" BorderThickness="1">
+						        BorderBrush="#555870" BorderThickness="1">
 							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="Bd" Property="Background" Value="{StaticResource AccentRedBrush}" />
-								<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource AccentRedBrush}" />
+								<Setter TargetName="Bd" Property="Background" Value="#FF4655" />
+								<Setter TargetName="Bd" Property="BorderBrush" Value="#FF4655" />
 							</Trigger>
 							<Trigger Property="IsPressed" Value="True">
 								<Setter TargetName="Bd" Property="Background">
 									<Setter.Value>
-										<SolidColorBrush Color="{StaticResource AccentRedPressed}" />
+										<SolidColorBrush Color="#E03040" />
 									</Setter.Value>
 								</Setter>
 							</Trigger>
@@ -191,9 +191,9 @@
 		</Grid.RowDefinitions>
 
 		<!-- ═══════════ TOP NAV BAR ═══════════ -->
-		<Border Grid.ColumnSpan="3" Background="{StaticResource BgCardBrush}"
+		<Border Grid.ColumnSpan="3" Background="#1E2140"
 		        CornerRadius="16" Padding="8,4"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="20" ShadowDepth="4" Opacity="0.3" Color="#000000" />
 			</Border.Effect>
@@ -203,7 +203,7 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
-				<fa:ImageAwesome Grid.Column="0" PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Gear"
+				<fa:ImageAwesome Grid.Column="0" PrimaryColor="#FF4655" Icon="Solid_Gear"
 				                 Margin="14" Width="24" Height="24" VerticalAlignment="Center" />
 				<Button Grid.Column="1" Cursor="Hand" Margin="16,4"
 				        Command="{Binding DataContext.NavigateHomeCommand, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -211,14 +211,14 @@
 					<Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
 						<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
 						           FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-						           Foreground="{StaticResource AccentRedBrush}"
+						           Foreground="#FF4655"
 						           Text="{x:Static p:Resources.Home}" />
 					</Viewbox>
 				</Button>
 				<Button Grid.Column="2" Cursor="Hand" Width="48" Height="48"
 				        Command="{Binding DataContext.NavigateInfoCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
-					<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Info" Margin="10" />
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Info" Margin="10" />
 				</Button>
 			</Grid>
 		</Border>
@@ -227,8 +227,8 @@
 
 		<!-- Language Card -->
 		<Border Grid.Row="1" Grid.Column="0" Margin="0,16,8,8"
-		        Background="{StaticResource BgCardBrush}" CornerRadius="16"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        Background="#1E2140" CornerRadius="16"
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.25" Color="#000000" />
 			</Border.Effect>
@@ -240,11 +240,11 @@
 					</Grid.RowDefinitions>
 					<TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
 					           FontWeight="Bold" FontFamily="{StaticResource Nunito}"
-					           Foreground="{StaticResource TextPrimaryBrush}"
+					           Foreground="#FFFFFF"
 					           Text="{x:Static p:Resources.SelLanguageTitle}"
 					           TextAlignment="Center" TextWrapping="Wrap" />
 					<Border Grid.Row="1" Height="30" Margin="16,16,16,0" Padding="4"
-					        Background="{StaticResource BgGlassBrush}" CornerRadius="8">
+					        Background="#2A2D52" CornerRadius="8">
 						<ComboBox Name="LanguageCombo"
 						          HorizontalContentAlignment="Center"
 						          Background="Transparent" BorderThickness="0"
@@ -257,8 +257,8 @@
 
 		<!-- Force Download Card -->
 		<Border Grid.Row="2" Grid.Column="0" Margin="0,8,8,0"
-		        Background="{StaticResource BgCardBrush}" CornerRadius="16"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        Background="#1E2140" CornerRadius="16"
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.25" Color="#000000" />
 			</Border.Effect>
@@ -270,13 +270,13 @@
 				</Grid.RowDefinitions>
 				<TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
 				           FontSize="22" FontWeight="Bold" FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextPrimaryBrush}"
+				           Foreground="#FFFFFF"
 				           Text="{x:Static p:Resources.CheckDownloadTitle}" TextWrapping="Wrap" />
 				<Viewbox Grid.Row="1" HorizontalAlignment="Center">
 					<Button Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"
 					        Click="Button_Click5Async" Style="{StaticResource SettingsActionButton}">
 						<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-						           Foreground="{StaticResource AccentRedBrush}"
+						           Foreground="#FF4655"
 						           Text="{x:Static p:Resources.CheckDownloadButton}" />
 					</Button>
 				</Viewbox>
@@ -284,7 +284,7 @@
 					<Button Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"
 					        Click="Button_Click4Async" Style="{StaticResource SettingsActionButton}">
 						<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-						           Foreground="{StaticResource AccentRedBrush}"
+						           Foreground="#FF4655"
 						           Text="{x:Static p:Resources.CheckUpdates}" />
 					</Button>
 				</Viewbox>
@@ -293,8 +293,8 @@
 
 		<!-- Info Explanation Card -->
 		<Border Grid.Row="1" Grid.Column="1" Margin="8,16,8,8"
-		        Background="{StaticResource BgCardBrush}" CornerRadius="16"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        Background="#1E2140" CornerRadius="16"
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.25" Color="#000000" />
 			</Border.Effect>
@@ -306,13 +306,13 @@
 				</Grid.RowDefinitions>
 				<TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
 				           FontSize="22" FontWeight="Bold" FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextPrimaryBrush}"
+				           Foreground="#FFFFFF"
 				           Text="{x:Static p:Resources.InfoTitle}" TextWrapping="Wrap" />
 				<Viewbox Grid.Row="1" VerticalAlignment="Top">
 					<TextBlock Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
 					           Margin="16,0" FontSize="18" FontWeight="Light"
 					           FontFamily="{StaticResource Nunito}"
-					           Foreground="{StaticResource TextSecondaryBrush}" Opacity="0.8"
+					           Foreground="#8B8FA3" Opacity="0.8"
 					           Text="{x:Static p:Resources.SettingsInfoExplanation1}"
 					           TextAlignment="Center" TextWrapping="Wrap" />
 				</Viewbox>
@@ -320,7 +320,7 @@
 					<TextBlock Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
 					           Margin="16,0" FontSize="18" FontWeight="Normal"
 					           FontFamily="{StaticResource Nunito}"
-					           Foreground="{StaticResource TextMutedBrush}" Opacity="0.5"
+					           Foreground="#555870" Opacity="0.5"
 					           Text="{x:Static p:Resources.SettingsInfoExplanation2}"
 					           TextAlignment="Center" TextWrapping="Wrap" />
 				</Viewbox>
@@ -329,8 +329,8 @@
 
 		<!-- Auto Login Card -->
 		<Border Grid.Row="1" Grid.Column="2" Margin="8,16,0,8"
-		        Background="{StaticResource BgCardBrush}" CornerRadius="16"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        Background="#1E2140" CornerRadius="16"
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.25" Color="#000000" />
 			</Border.Effect>
@@ -342,20 +342,20 @@
 				</Grid.RowDefinitions>
 				<TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
 				           FontSize="22" FontWeight="Bold" FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextPrimaryBrush}"
+				           Foreground="#FFFFFF"
 				           Text="{x:Static p:Resources.AutoLoginTitle}" TextWrapping="Wrap" />
 				<Viewbox Grid.Row="1" HorizontalAlignment="Center">
 					<TextBlock Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
 					           Margin="16,4" FontSize="18" FontWeight="Normal"
 					           FontFamily="{StaticResource Nunito}"
-					           Foreground="{StaticResource TextSecondaryBrush}" Opacity="0.8"
+					           Foreground="#8B8FA3" Opacity="0.8"
 					           Text="{x:Static p:Resources.AutoLoginExplanation}" TextWrapping="Wrap" />
 				</Viewbox>
 				<Viewbox Grid.Row="2">
 					<Button Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"
 					        Click="Button_Click3Async" Style="{StaticResource SettingsActionButton}">
 						<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-						           Foreground="{StaticResource AccentRedBrush}"
+						           Foreground="#FF4655"
 						           Text="{x:Static p:Resources.Login}" />
 					</Button>
 				</Viewbox>
@@ -364,8 +364,8 @@
 
 		<!-- Check Updates Card -->
 		<Border Grid.Row="2" Grid.Column="2" Margin="8,8,0,0"
-		        Background="{StaticResource BgCardBrush}" CornerRadius="16"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        Background="#1E2140" CornerRadius="16"
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.25" Color="#000000" />
 			</Border.Effect>
@@ -377,24 +377,24 @@
 				</Grid.RowDefinitions>
 				<TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
 				           FontSize="22" FontWeight="Bold" FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextPrimaryBrush}"
+				           Foreground="#FFFFFF"
 				           Text="{x:Static p:Resources.CheckUpdates}" TextWrapping="Wrap" />
 				<StackPanel Grid.Row="1">
 					<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 						<TextBlock FontSize="15" FontFamily="{StaticResource Nunito}"
-						           Foreground="{StaticResource TextSecondaryBrush}" Opacity="0.8"
+						           Foreground="#8B8FA3" Opacity="0.8"
 						           Text="{x:Static p:Resources.Latestversion}" TextWrapping="Wrap" />
 						<TextBlock x:Name="LatestVersion" FontSize="15"
-						           Foreground="{StaticResource TextSecondaryBrush}" Opacity="0.8"
+						           Foreground="#8B8FA3" Opacity="0.8"
 						           FontFamily="{StaticResource Nunito}" Text="" TextWrapping="Wrap" />
 					</StackPanel>
 					<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 						<TextBlock FontSize="15" FontFamily="{StaticResource Nunito}"
-						           Foreground="{StaticResource TextSecondaryBrush}" Opacity="0.8"
+						           Foreground="#8B8FA3" Opacity="0.8"
 						           Text="{x:Static p:Resources.CurrentVersion}" TextWrapping="Wrap" />
 						<TextBlock x:Name="CurrentVersion" FontSize="15"
 						           FontFamily="{StaticResource Nunito}"
-						           Foreground="{StaticResource TextSecondaryBrush}" Opacity="0.8"
+						           Foreground="#8B8FA3" Opacity="0.8"
 						           Text="" TextWrapping="Wrap" />
 					</StackPanel>
 				</StackPanel>
@@ -402,7 +402,7 @@
 					<Button Margin="16,4" HorizontalAlignment="Center" VerticalAlignment="Top"
 					        Click="Button_Click1Async" Style="{StaticResource SettingsActionButton}">
 						<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-						           Foreground="{StaticResource AccentRedBrush}"
+						           Foreground="#FF4655"
 						           Text="{x:Static p:Resources.CheckUpdates}" />
 					</Button>
 				</Viewbox>
@@ -411,8 +411,8 @@
 
 		<!-- Auth Status Card -->
 		<Border Grid.Row="2" Grid.Column="1" Margin="8,8,8,0"
-		        Background="{StaticResource BgCardBrush}" CornerRadius="16"
-		        BorderBrush="{StaticResource BgGlassBrush}" BorderThickness="1">
+		        Background="#1E2140" CornerRadius="16"
+		        BorderBrush="#2A2D52" BorderThickness="1">
 			<Border.Effect>
 				<DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.25" Color="#000000" />
 			</Border.Effect>
@@ -424,19 +424,19 @@
 				</Grid.RowDefinitions>
 				<TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
 				           FontSize="22" FontWeight="Bold" FontFamily="{StaticResource Nunito}"
-				           Foreground="{StaticResource TextPrimaryBrush}"
+				           Foreground="#FFFFFF"
 				           Text="{x:Static p:Resources.AuthStatusTitle}" TextWrapping="Wrap" />
 				<Viewbox Grid.Row="1" HorizontalAlignment="Center">
 					<TextBlock x:Name="AuthStatusBox" Margin="16,4"
 					           FontFamily="{StaticResource Nunito}" FontSize="10" FontWeight="Normal"
-					           Foreground="{StaticResource AccentTealBrush}" Opacity="0.8"
+					           Foreground="#32E2B2" Opacity="0.8"
 					           Text="{x:Static p:Resources.AuthStatusDefault}" TextWrapping="Wrap" />
 				</Viewbox>
 				<Viewbox Grid.Row="2">
 					<Button Margin="16,4" HorizontalAlignment="Center" VerticalAlignment="Top"
 					        Click="Button_Click2Async" Style="{StaticResource SettingsActionButton}">
 						<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-						           Foreground="{StaticResource AccentRedBrush}"
+						           Foreground="#FF4655"
 						           Text="{x:Static p:Resources.AuthStatusButton}" />
 					</Button>
 				</Viewbox>

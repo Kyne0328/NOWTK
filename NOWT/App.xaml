@@ -33,7 +33,7 @@
 		<!-- Brushes -->
 		<SolidColorBrush x:Key="BgDeepBrush" Color="{StaticResource BgDeep}" />
 		<SolidColorBrush x:Key="BgDarkBrush" Color="{StaticResource BgDark}" />
-		<SolidColorBrush x:Key="BgCardBrush" Color="{StaticResource BgCard}" />
+		<SolidColorBrush x:Key="BgCardBrush" Color="#1E2140" />
 		<SolidColorBrush x:Key="BgGlassBrush" Color="{StaticResource BgGlass}" />
 		<SolidColorBrush x:Key="AccentRedBrush" Color="{StaticResource AccentRed}" />
 		<SolidColorBrush x:Key="AccentTealBrush" Color="{StaticResource AccentTeal}" />
@@ -73,7 +73,7 @@
 			<Border Name="RootElement" CornerRadius="12" BorderThickness="1"
 			        BorderBrush="Transparent" Cursor="Hand">
 				<Border.Background>
-					<SolidColorBrush x:Name="ButtonBackground" Color="{StaticResource BgCard}" />
+					<SolidColorBrush x:Name="ButtonBackground" Color="#1E2140" />
 				</Border.Background>
 				<ContentPresenter
 					Margin="8"
@@ -87,7 +87,7 @@
 								<ColorAnimation
 									Storyboard.TargetName="ButtonBackground"
 									Storyboard.TargetProperty="Color"
-									To="{StaticResource BgCardHover}"
+									To="#252850"
 									Duration="0:0:0.15" />
 							</Storyboard>
 						</VisualState>
@@ -96,7 +96,7 @@
 								<ColorAnimation
 									Storyboard.TargetName="ButtonBackground"
 									Storyboard.TargetProperty="Color"
-									To="{StaticResource AccentRedPressed}"
+									To="#E03040"
 									Duration="0:0:0.1" />
 							</Storyboard>
 						</VisualState>
@@ -110,7 +110,7 @@
 			<Border Name="RootElement" CornerRadius="12" BorderThickness="1"
 			        BorderBrush="Transparent" Cursor="Hand">
 				<Border.Background>
-					<SolidColorBrush x:Name="ButtonBackground" Color="{StaticResource BgCard}" />
+					<SolidColorBrush x:Name="ButtonBackground" Color="#1E2140" />
 				</Border.Background>
 				<ContentPresenter
 					Margin="8"
@@ -124,7 +124,7 @@
 								<ColorAnimation
 									Storyboard.TargetName="ButtonBackground"
 									Storyboard.TargetProperty="Color"
-									To="{StaticResource BgCardHover}"
+									To="#252850"
 									Duration="0:0:0.15" />
 							</Storyboard>
 						</VisualState>
@@ -133,7 +133,7 @@
 								<ColorAnimation
 									Storyboard.TargetName="ButtonBackground"
 									Storyboard.TargetProperty="Color"
-									To="{StaticResource AccentRedPressed}"
+									To="#E03040"
 									Duration="0:0:0.1" />
 							</Storyboard>
 						</VisualState>
@@ -142,7 +142,7 @@
 								<ColorAnimation
 									Storyboard.TargetName="ButtonBackground"
 									Storyboard.TargetProperty="Color"
-									To="{StaticResource AccentRed}"
+									To="#FF4655"
 									Duration="0:0:0.2" />
 							</Storyboard>
 						</VisualState>
@@ -151,7 +151,7 @@
 								<ColorAnimation
 									Storyboard.TargetName="ButtonBackground"
 									Storyboard.TargetProperty="Color"
-									To="{StaticResource BgCard}"
+									To="#1E2140"
 									Duration="0:0:0.2" />
 							</Storyboard>
 						</VisualState>
@@ -230,12 +230,12 @@
 		<Style TargetType="ToolTip">
 			<Setter Property="Background">
 				<Setter.Value>
-					<SolidColorBrush Color="{StaticResource BgCard}" />
+					<SolidColorBrush Color="#1E2140" />
 				</Setter.Value>
 			</Setter>
 			<Setter Property="Foreground">
 				<Setter.Value>
-					<SolidColorBrush Color="{StaticResource TextPrimary}" />
+					<SolidColorBrush Color="#FFFFFF" />
 				</Setter.Value>
 			</Setter>
 			<Setter Property="FontFamily" Value="{StaticResource Nunito}" />
@@ -243,33 +243,13 @@
 			<Setter Property="BorderThickness" Value="1" />
 			<Setter Property="BorderBrush">
 				<Setter.Value>
-					<SolidColorBrush Color="{StaticResource BgGlass}" />
+					<SolidColorBrush Color="#2A2D52" />
 				</Setter.Value>
 			</Setter>
 			<Setter Property="Padding" Value="10,6" />
 			<Setter Property="HasDropShadow" Value="True" />
 		</Style>
 
-		<!-- ==================== SCROLLBAR ==================== -->
-		<Style TargetType="ScrollBar">
-			<Setter Property="Width" Value="6" />
-			<Setter Property="Background" Value="Transparent" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ScrollBar">
-						<Track Name="PART_Track" IsDirectionReversed="True">
-							<Track.Thumb>
-								<Thumb>
-									<Thumb.Style>
-										<Style TargetType="Thumb">
-											<Setter Property="Template">
-												<Setter.Value>
-													<ControlTemplate TargetType="Thumb">
-														<Border CornerRadius="3" Background="#3A3D5C" Opacity="0.6" />
-													</ControlTemplate>
-												</Setter.Value>
-											</Setter>
-										</Style>
 									</Thumb.Style>
 								</Thumb>
 							</Track.Thumb>
