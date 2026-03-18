@@ -11,8 +11,18 @@ public partial class MainViewModel : ObservableObject
 
     public MainViewModel()
     {
-        SelectedViewModel = Ioc.Default.GetRequiredService<HomeViewModel>();
+        try
+        {
+            SelectedViewModel = Ioc.Default.GetRequiredService<HomeViewModel>();
+        }
+        catch (Exception ex)
+        {
+            // Log the exception and rethrow so we can see what's happening
+            Constants.Log.Error("Failed to initialize MainViewModel: {Exception}", ex);
+            throw;
+        }
     }
+}
 
     [ICommand]
     public void NavigateHome()
