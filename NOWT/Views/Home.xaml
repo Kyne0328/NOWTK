@@ -17,9 +17,6 @@
 		<i:EventTrigger EventName="Loaded">
 			<i:InvokeCommandAction Command="{Binding PassiveLoadCheckCommand}" />
 		</i:EventTrigger>
-		<i:EventTrigger EventName="Closing">
-			<i:InvokeCommandAction Command="{Binding StopPassiveLoadAsyncCommand}" />
-		</i:EventTrigger>
 	</i:Interaction.Triggers>
 	<UserControl.Resources>
 	</UserControl.Resources>
@@ -66,7 +63,7 @@
 				        Command="{Binding DataContext.NavigateSettingsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
 					<Viewbox>
-						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Gear" Margin="0" />
+						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Gear" Margin="0" />
 					</Viewbox>
 				</Button>
 
@@ -75,7 +72,7 @@
 				        Command="{Binding DataContext.NavigateMatchCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Visibility="Collapsed">
 					<Viewbox>
-						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Gear" Margin="0" />
+						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Gear" Margin="0" />
 					</Viewbox>
 				</Button>
 
@@ -101,7 +98,7 @@
 				        Command="{Binding DataContext.NavigateInfoCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
 					<Viewbox>
-						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Info" Margin="0" />
+						<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Info" Margin="0" />
 					</Viewbox>
 				</Button>
 			</Grid>
@@ -170,7 +167,7 @@
 						           Text="{x:Static p:Resources.Valorant}" />
 						<fa:ImageAwesome Grid.Row="0" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="ValorantStatusView"
-						                 PrimaryColor="{StaticResource AccentRed}"
+						                 PrimaryColor="{StaticResource AccentRedBrush}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
 
 						<!-- Row separator -->
@@ -188,7 +185,7 @@
 						           Text="{x:Static p:Resources.Account}" />
 						<fa:ImageAwesome Grid.Row="1" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="AccountStatusView"
-						                 PrimaryColor="{StaticResource AccentRed}"
+						                 PrimaryColor="{StaticResource AccentRedBrush}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
 
 						<!-- Row separator -->
@@ -206,7 +203,7 @@
 						           Text="{x:Static p:Resources.Match}" />
 						<fa:ImageAwesome Grid.Row="2" Grid.Column="1"
 						                 Height="24" Width="24" x:Name="MatchStatusView"
-						                 PrimaryColor="{StaticResource AccentRed}"
+						                 PrimaryColor="{StaticResource AccentRedBrush}"
 						                 Icon="Solid_Xmark" Margin="16,20,28,20" />
 					</Grid>
 				</Border>
@@ -240,7 +237,7 @@
 							        Template="{StaticResource ButtonTemplate}"
 							        Command="{Binding LoadNowCommand}"
 							        Margin="0,0,8,0">
-								<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Rotate" Margin="10" />
+								<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Rotate" Margin="10" />
 							</Button>
 
 							<ToggleButton Cursor="Hand" Width="48" Height="48"
@@ -254,7 +251,7 @@
 										<i:InvokeCommandAction Command="{Binding Path=PassiveLoadAsyncCommand}" />
 									</i:EventTrigger>
 								</i:Interaction.Triggers>
-								<fa:ImageAwesome PrimaryColor="{StaticResource AccentRed}" Icon="Solid_Pause" Margin="10" />
+								<fa:ImageAwesome PrimaryColor="{StaticResource AccentRedBrush}" Icon="Solid_Pause" Margin="10" />
 							</ToggleButton>
 						</StackPanel>
 
