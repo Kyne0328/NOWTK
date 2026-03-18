@@ -138,18 +138,20 @@
 		<!-- Settings action button style -->
 		<Style x:Key="SettingsActionButton" TargetType="Button">
 			<Setter Property="Cursor" Value="Hand" />
+			<Setter Property="Foreground" Value="White" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
 						<Border x:Name="Bd" CornerRadius="10" Padding="16,8"
-						        Background="Transparent"
-						        BorderBrush="#555870" BorderThickness="1">
-							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+							    Background="Transparent"
+							    BorderBrush="#555870" BorderThickness="1">
+							<ContentPresenter x:Name="Content" HorizontalAlignment="Center" VerticalAlignment="Center" />
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter TargetName="Bd" Property="Background" Value="#FF4655" />
 								<Setter TargetName="Bd" Property="BorderBrush" Value="#FF4655" />
+								<Setter TargetName="Content" Property="Foreground" Value="White" />
 							</Trigger>
 							<Trigger Property="IsPressed" Value="True">
 								<Setter TargetName="Bd" Property="Background">
@@ -197,19 +199,21 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
-				<fa:ImageAwesome Grid.Column="0" PrimaryColor="#FF4655" Icon="Solid_Gear"
-				                 Margin="14" Width="24" Height="24" VerticalAlignment="Center" />
-				<Button Grid.Column="1" Cursor="Hand" Margin="16,4"
+				<!-- Back button -->
+				<Button Grid.Column="0" Cursor="Hand" Width="48" Height="48" Margin="14"
 				        Command="{Binding DataContext.NavigateHomeCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
-					<Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
-						<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-						           FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-						           Foreground="#FF4655"
-						           Text="{x:Static p:Resources.Home}" />
-					</Viewbox>
+					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_AngleLeft" Margin="10" />
 				</Button>
-				<Button Grid.Column="2" Cursor="Hand" Width="48" Height="48"
+				<!-- Settings title -->
+				<TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+				           Margin="16,4"
+				           FontSize="26" FontWeight="Bold"
+				           FontFamily="{StaticResource Nunito}"
+				           Foreground="{StaticResource TextPrimaryBrush}"
+				           Text="Settings" />
+				<!-- Info button -->
+				<Button Grid.Column="2" Cursor="Hand" Width="48" Height="48" Margin="10"
 				        Command="{Binding DataContext.NavigateInfoCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
 					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Info" Margin="10" />
@@ -270,7 +274,7 @@
 							<Button Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"
 							        Click="Button_Click5Async" Style="{StaticResource SettingsActionButton}">
 								<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-								           Foreground="#FF4655"
+								           Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
 								           Text="{x:Static p:Resources.CheckDownloadButton}" />
 							</Button>
 						</Viewbox>
@@ -278,7 +282,7 @@
 							<Button Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"
 							        Click="Button_Click4Async" Style="{StaticResource SettingsActionButton}">
 								<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-								           Foreground="#FF4655"
+								           Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
 								           Text="{x:Static p:Resources.CheckUpdates}" />
 							</Button>
 						</Viewbox>
@@ -347,7 +351,7 @@
 							<Button Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"
 							        Click="Button_Click3Async" Style="{StaticResource SettingsActionButton}">
 								<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-								           Foreground="#FF4655"
+								           Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
 								           Text="{x:Static p:Resources.Login}" />
 							</Button>
 						</Viewbox>
@@ -393,7 +397,7 @@
 							<Button Margin="16,4" HorizontalAlignment="Center" VerticalAlignment="Top"
 							        Click="Button_Click1Async" Style="{StaticResource SettingsActionButton}">
 								<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-								           Foreground="#FF4655"
+								           Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
 								           Text="{x:Static p:Resources.CheckUpdates}" />
 							</Button>
 						</Viewbox>
@@ -426,7 +430,7 @@
 							<Button Margin="16,4" HorizontalAlignment="Center" VerticalAlignment="Top"
 							        Click="Button_Click2Async" Style="{StaticResource SettingsActionButton}">
 								<TextBlock Padding="4" FontFamily="{StaticResource Nunito}" FontWeight="SemiBold"
-								           Foreground="#FF4655"
+								           Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
 								           Text="{x:Static p:Resources.AuthStatusButton}" />
 							</Button>
 						</Viewbox>
