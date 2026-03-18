@@ -194,9 +194,12 @@ public class LiveMatch
                     false
                 )
                 .ConfigureAwait(false);
-            player.AccountLevel = !riotPlayer.PlayerIdentity.HideAccountLevel
-                ? riotPlayer.PlayerIdentity.AccountLevel.ToString()
-                : "-";
+            player.AccountLevel = GetAccountLevelString(
+                riotPlayer.PlayerIdentity.AccountLevel,
+                riotPlayer.PlayerIdentity.HideAccountLevel,
+                riotPlayer.Subject,
+                presencesResponse
+            );
             player.TeamId = teamId;
             player.Active = Visibility.Visible;
             player.IsAgentLocked = riotPlayer.CharacterSelectionState == "locked";
@@ -204,6 +207,7 @@ public class LiveMatch
         catch (Exception e)
         {
             Constants.Log.Error("GetPlayerInfo() (PRE) failed for player {index}: {e}", index, e);
+            player.AccountLevel ??= "-";
         }
 
         return player;
@@ -236,9 +240,12 @@ public class LiveMatch
                     false
                 )
                 .ConfigureAwait(false);
-            player.AccountLevel = !riotPlayer.PlayerIdentity.HideAccountLevel
-                ? riotPlayer.PlayerIdentity.AccountLevel.ToString()
-                : "-";
+            player.AccountLevel = GetAccountLevelString(
+                riotPlayer.PlayerIdentity.AccountLevel,
+                riotPlayer.PlayerIdentity.HideAccountLevel,
+                riotPlayer.Subject,
+                presencesResponse
+            );
             player.TeamId = riotPlayer.TeamId;
             player.Active = Visibility.Visible;
             // For live matches, agents are always locked/selected
@@ -247,6 +254,7 @@ public class LiveMatch
         catch (Exception e)
         {
             Constants.Log.Error("GetPlayerInfo() (LIVE) failed for player {index}: {e}", index, e);
+            player.AccountLevel ??= "-";
         }
 
         return player;
@@ -452,9 +460,10 @@ public class LiveMatch
         };
         player.IgnData = await GetIgcUsernameAsync(riotPlayer.Subject, false, true)
             .ConfigureAwait(false);
-        player.AccountLevel = !riotPlayer.PlayerIdentity.HideAccountLevel
-            ? riotPlayer.PlayerIdentity.AccountLevel.ToString()
-            : "-";
+        player.AccountLevel = GetAccountLevelString(
+            riotPlayer.PlayerIdentity.AccountLevel,
+            riotPlayer.PlayerIdentity.HideAccountLevel
+        );
         player.TeamId = "Blue";
         player.Active = Visibility.Visible;
         return player;
@@ -517,6 +526,44 @@ public class LiveMatch
         }
 
         return ignData;
+    }
+
+    private static string GetAccountLevelString(
+        int accountLevel,
+        bool hideAccountLevel,
+        Guid? puuid = null,
+        PresencesResponse presences = null
+    )
+    {
+        if (hideAccountLevel)
+            return "-";
+
+        // If the API returned a valid level, use it
+        if (accountLevel > 0)
+            return accountLevel.ToString();
+
+        // Try to get account level from presence data as fallback
+        if (puuid.HasValue && presences?.Presences != null)
+        {
+            try
+            {
+                var friend = presences.Presences.FirstOrDefault(f => f.Puuid == puuid.Value);
+                if (friend != null && !string.IsNullOrEmpty(friend.Private))
+                {
+                    var json = Encoding.UTF8.GetString(Convert.FromBase64String(friend.Private));
+                    var content = JsonSerializer.Deserialize<PresencesPrivate>(json);
+                    if (content != null && content.AccountLevel > 0)
+                        return content.AccountLevel.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                Constants.Log.Error("GetAccountLevelString presence fallback failed: {e}", e);
+            }
+        }
+
+        // If level is 0 and not hidden, it's likely unavailable data
+        return accountLevel > 0 ? accountLevel.ToString() : "-";
     }
 
     private static async Task<IdentityData> GetAgentInfoAsync(Guid agentid)
