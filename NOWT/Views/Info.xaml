@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:p="clr-namespace:NOWT.Properties"
 	xmlns:viewModels="clr-namespace:NOWT.ViewModels"
-	xmlns:fa="http://schemas.fontawesome.com/icons/fonts"
+	xmlns:fa="http://schemas.fontawesome.com/icons/svg"
 	d:DesignHeight="754"
 	d:DesignWidth="1536"
 	UseLayoutRounding="True"
@@ -72,7 +72,7 @@
 				        ToolTip="{x:Static p:Resources.SettingsTitle}" ToolTipService.InitialShowDelay="0"
 				        Command="{Binding DataContext.NavigateSettingsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
 				        Template="{StaticResource ButtonTemplate}">
-					<fa:ImageAwesome PrimaryColor="#FF4655" Icon="Solid_Gear" Margin="10" />
+					<fa:SvgAwesome PrimaryColor="#FF4655" Icon="Solid_Gear" Margin="10" />
 				</Button>
 				<Button Grid.Column="1" Cursor="Hand" Margin="16,4"
 				        ToolTip="{x:Static p:Resources.RefreshMatch}" ToolTipService.InitialShowDelay="0"
@@ -85,7 +85,7 @@
 						           Text="{x:Static p:Resources.Home}" />
 					</Viewbox>
 				</Button>
-				<fa:ImageAwesome Grid.Column="2" PrimaryColor="#FF4655"
+				<fa:SvgAwesome Grid.Column="2" PrimaryColor="#FF4655"
 				                 Icon="Solid_Info" Margin="14" Width="24" Height="24" />
 			</Grid>
 		</Border>
