@@ -164,37 +164,6 @@
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 
-			<!-- Header -->
-			<Border Grid.Row="0" Background="#2A2D52" CornerRadius="12" Padding="16" Margin="0,0,0,8">
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto" />
-						<ColumnDefinition Width="*" />
-						<ColumnDefinition Width="Auto" />
-					</Grid.ColumnDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto" />
-						<ColumnDefinition Width="*" />
-						<ColumnDefinition Width="Auto" />
-					</Grid.ColumnDefinitions>
-					
-					<TextBlock Grid.Column="0" FontFamily="{StaticResource Nunito}" FontSize="18" FontWeight="SemiBold"
-					           Foreground="#FFFFFF" Text="Round" Margin="0,0,16,0" />
-					
-					<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="18" FontWeight="SemiBold"
-						           Foreground="#FF4655" Text="You" Margin="0,0,32,0" />
-						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="18" FontWeight="SemiBold"
-						           Foreground="#FFFFFF" Text="vs" Margin="0,0,32,0" />
-						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="18" FontWeight="SemiBold"
-						           Foreground="#46A0FF" Text="Opponent" />
-					</StackPanel>
-					
-					<TextBlock Grid.Column="2" FontFamily="{StaticResource Nunito}" FontSize="18" FontWeight="SemiBold"
-					           Foreground="#FFFFFF" Text="Result" />
-				</Grid>
-			</Border>
-
 			<!-- WebSocket Warning Banner -->
 			<Border Grid.Row="0" Background="#3D2A1F" CornerRadius="12" Padding="12" Margin="0,0,0,8"
 			        Visibility="{Binding WebSocketTrackingEnabled, Converter={StaticResource InverseBooleanConverter}}">
