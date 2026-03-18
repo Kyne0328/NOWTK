@@ -16,7 +16,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
         <ApplicationIcon>logo.ico</ApplicationIcon>
-        <Version>2.0.13</Version>
+        <Version>2.0.14</Version>
         <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
         <StartupObject>NOWT.App</StartupObject>
         <Description>A Windows app to view player ranks and stats in a live Valorant Match</Description>
@@ -31,8 +31,8 @@
         <IsPackable>false</IsPackable>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryType>git</RepositoryType>
-        <AssemblyVersion>2.0.13</AssemblyVersion>
-        <FileVersion>2.0.13</FileVersion>
+        <AssemblyVersion>2.0.14</AssemblyVersion>
+        <FileVersion>2.0.14</FileVersion>
         <Platforms>AnyCPU</Platforms>
         <Nullable>annotations</Nullable>
     </PropertyGroup>
@@ -158,7 +158,7 @@
 
     <ItemGroup>
         <PackageReference Include="Autoupdater.NET.Official" Version="1.8.3" />
-        <PackageReference Include="FontAwesome6.WPF" Version="2.2.0" />
+        <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
