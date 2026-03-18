@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   bump:
     runs-on: ubuntu-latest
@@ -15,6 +18,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Get Next Version
         id: semver
         uses: ietf-tools/semver-action@v1
@@ -26,6 +31,7 @@ jobs:
       - name: Replace version
         if: steps.semver.outputs.next != steps.semver.outputs.current
         run: |
+          major=$(echo "$next" | cut -d. -f1)
           sed -i "s/\(MyAppVersion\) '.*'/\1 '$next'/" NOWT.iss
           sed -i "s/\(<AssemblyVersion>\).*</\1$major.0.0</" NOWT/NOWT.csproj
           sed -i "s/\(<FileVersion>\).*</\1$next</" NOWT/NOWT.csproj
@@ -33,7 +39,6 @@ jobs:
           sed -i "s/\(<version>\).*</\1$next</" NOWT/VersionInfo.xml
         env:
           next: ${{ steps.semver.outputs.nextStrict }}
-          major: ${{ steps.semver.outputs.nextMajorStrict }}
       - name: Push new version to repo
         if: steps.semver.outputs.next != steps.semver.outputs.current
         uses: stefanzweifel/git-auto-commit-action@v4

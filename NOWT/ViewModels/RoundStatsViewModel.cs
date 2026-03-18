@@ -165,40 +165,6 @@ public partial class RoundStatsViewModel : ObservableObject, IDisposable
         });
     }
 
-    // Method to update player stats from Riot API
-    public async Task UpdatePlayerStatsAsync(List<Player> players)
-    {
-        foreach (var player in players)
-        {
-            try
-            {
-                // Get player stats (headshot %, KD)
-                var stats = await LiveMatch.GetPlayerStatsAsync(player.PlayerUuid);
-                if (stats != null)
-                {
-                    if (double.TryParse(stats.HeadshotPercent, out var hs))
-                        player.HeadshotPercent = hs;
-                    
-                    if (double.TryParse(stats.KillDeathRatio, out var kd))
-                        player.KillDeathRatio = kd;
-                }
-
-                // Get leaderboard position
-                var leaderboardPos = await LiveMatch.GetLeaderboardPositionAsync(player.PlayerUuid);
-                player.LeaderboardPosition = leaderboardPos;
-
-                // Get match history for "times played together" feature
-                var history = await LiveMatch.GetPlayerMatchHistoryAsync(player.PlayerUuid, 50);
-                player.MatchesPlayedTogether = PlayerHistoryHelper.GetMatchesPlayedTogether(player.PlayerUuid);
-                player.LastPlayedTime = PlayerHistoryHelper.GetLastPlayedTime(player.PlayerUuid);
-            }
-            catch (Exception ex)
-            {
-                Constants.Log.Error("Error updating player stats for {Player}: {Message}", 
-                    player.PlayerName, ex.Message);
-            }
-        }
-    }
 
     [ICommand]
     private async Task ConnectToWebSocketAsync()
