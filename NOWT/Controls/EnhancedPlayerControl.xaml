@@ -1,0 +1,152 @@
+<UserControl x:Class="NOWT.Controls.EnhancedPlayerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:p="clr-namespace:NOWT.Properties"
+             xmlns:fa="http://schemas.fontawesome.com/icons/svg"
+             xmlns:converters="clr-namespace:NOWT.Converters"
+             x:Name="Self"
+             d:DesignHeight="160"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+	<UserControl.Resources>
+        <converters:LeaderboardVisibilityConverter x:Key="LeaderboardVisibilityConverter" />
+		<Style TargetType="ToolTip">
+			<Setter Property="Background">
+				<Setter.Value>
+					<SolidColorBrush Color="#1E2140" />
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Foreground">
+				<Setter.Value>
+					<SolidColorBrush Color="#FFFFFF" />
+				</Setter.Value>
+			</Setter>
+			<Setter Property="FontFamily" Value="{StaticResource Nunito}" />
+			<Setter Property="FontWeight" Value="Medium" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="BorderBrush">
+				<Setter.Value>
+					<SolidColorBrush Color="#2A2D52" />
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Padding" Value="10,6" />
+			<Setter Property="HasDropShadow" Value="True" />
+		</Style>
+	</UserControl.Resources>
+
+	<Border Background="#1E2140" CornerRadius="12" Padding="12" Margin="0,4,0,4"
+	        BorderBrush="#2A2D52" BorderThickness="1">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Party Indicator -->
+			<Border Grid.Column="0" Width="4" CornerRadius="2" Margin="0,0,8,0"
+			        Background="{Binding PlayerCell.PlayerUiData.PartyColour, ElementName=Self}"
+			        VerticalAlignment="Stretch" />
+
+			<!-- Main Content -->
+			<StackPanel Grid.Column="1" Orientation="Vertical">
+				<!-- Player Name and Level -->
+				<StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+					<TextBlock FontFamily="{StaticResource Nunito}" FontSize="14" FontWeight="Bold"
+					           Foreground="#FF4655"
+					           Text="{Binding PlayerCell.PlayerName, ElementName=Self}" />
+					<TextBlock FontFamily="{StaticResource Nunito}" FontSize="14" FontWeight="Normal"
+					           Foreground="#8B8FA3"
+					           Text=" #" />
+					<TextBlock FontFamily="{StaticResource Nunito}" FontSize="14" FontWeight="Normal"
+					           Foreground="#8B8FA3"
+					           Text="{Binding PlayerCell.PlayerTag, ElementName=Self}" />
+					<TextBlock FontFamily="{StaticResource Nunito}" FontSize="14" FontWeight="Normal"
+					           Foreground="#8B8FA3"
+					           Margin="8,0,0,0"
+					           Text="{Binding PlayerCell.AccountLevel, ElementName=Self}" />
+				</StackPanel>
+
+				<!-- Stats Row -->
+				<StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+					<!-- Headshot Percentage -->
+					<StackPanel Orientation="Horizontal" Margin="0,0,12,0">
+						<fa:SvgAwesome PrimaryColor="#8B8FA3" Icon="Solid_Bullseye" Width="12" Height="12"
+						               Margin="0,0,4,0" VerticalAlignment="Center"/>
+						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="12" FontWeight="Normal"
+						           Foreground="#8B8FA3"
+						           Text="{Binding PlayerCell.HeadshotPercent, ElementName=Self, StringFormat='{}{0:F1}%'}" />
+					</StackPanel>
+
+					<!-- Win Rate -->
+					<StackPanel Orientation="Horizontal" Margin="0,0,12,0">
+						<fa:SvgAwesome PrimaryColor="#8B8FA3" Icon="Solid_Trophy" Width="12" Height="12"
+						               Margin="0,0,4,0" VerticalAlignment="Center"/>
+						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="12" FontWeight="Normal"
+						           Foreground="#8B8FA3"
+						           Text="{Binding PlayerCell.WinRate, ElementName=Self, StringFormat='{}{0:F1}%'}" />
+					</StackPanel>
+
+					<!-- Kill/Death Ratio -->
+					<StackPanel Orientation="Horizontal" Margin="0,0,12,0">
+						<fa:SvgAwesome PrimaryColor="#8B8FA3" Icon="Solid_Skull" Width="12" Height="12"
+						               Margin="0,0,4,0" VerticalAlignment="Center"/>
+						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="12" FontWeight="Normal"
+						           Foreground="#8B8FA3"
+						           Text="{Binding PlayerCell.KillDeathRatio, ElementName=Self}" />
+					</StackPanel>
+
+					<!-- Leaderboard Position -->
+					<StackPanel Orientation="Horizontal" Margin="0,0,12,0"
+					            Visibility="{Binding PlayerCell.LeaderboardPosition, Converter={StaticResource LeaderboardVisibilityConverter}}">
+						<fa:SvgAwesome PrimaryColor="#FFD700" Icon="Solid_Crown" Width="12" Height="12"
+						               Margin="0,0,4,0" VerticalAlignment="Center"/>
+						<TextBlock FontFamily="{StaticResource Nunito}" FontSize="12" FontWeight="Normal"
+						           Foreground="#FFD700"
+						           Text="{Binding PlayerCell.LeaderboardPosition, ElementName=Self}" />
+					</StackPanel>
+				</StackPanel>
+
+				<!-- Match History Row -->
+				<StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+					<TextBlock FontFamily="{StaticResource Nunito}" FontSize="11" FontWeight="Normal"
+					           Foreground="#8B8FA3"
+					           Text="Matches Played Together: " />
+					<TextBlock FontFamily="{StaticResource Nunito}" FontSize="11" FontWeight="Normal"
+					           Foreground="#FF4655"
+					           Text="{Binding PlayerCell.MatchesPlayedTogether, ElementName=Self}" />
+					<TextBlock FontFamily="{StaticResource Nunito}" FontSize="11" FontWeight="Normal"
+					           Foreground="#8B8FA3"
+					           Margin="12,0,0,0"
+					           Text="Last Played: " />
+					<TextBlock FontFamily="{StaticResource Nunito}" FontSize="11" FontWeight="Normal"
+					           Foreground="#8B8FA3"
+					           Text="{Binding PlayerCell.LastPlayedTime, ElementName=Self}" />
+				</StackPanel>
+			</StackPanel>
+
+			<!-- Rank and Previous Ranks -->
+			<StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Right" Margin="8,0,0,0">
+				<!-- Current Rank -->
+				<TextBlock FontFamily="{StaticResource Nunito}" FontSize="14" FontWeight="Bold"
+				           Foreground="#FFFFFF"
+				           Text="{Binding PlayerCell.RankData.RankNames[0], ElementName=Self}" />
+
+				<!-- Previous Ranks -->
+				<StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+					<Image Width="16" Height="16"
+					       Source="{Binding PlayerCell.RankData.RankImages[1], ElementName=Self}"
+					       ToolTip="{Binding PlayerCell.RankData.RankNames[1], ElementName=Self}" />
+					<Image Width="16" Height="16" Margin="4,0,0,0"
+					       Source="{Binding PlayerCell.RankData.RankImages[2], ElementName=Self}"
+					       ToolTip="{Binding PlayerCell.RankData.RankNames[2], ElementName=Self}" />
+					<Image Width="16" Height="16" Margin="4,0,0,0"
+					       Source="{Binding PlayerCell.RankData.RankImages[3], ElementName=Self}"
+					       ToolTip="{Binding PlayerCell.RankData.RankNames[3], ElementName=Self}" />
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+	</Border>
+</UserControl>

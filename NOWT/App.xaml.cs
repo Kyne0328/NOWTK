@@ -90,6 +90,7 @@ public partial class App : Application
                 .AddTransient<InfoViewModel>()
                 .AddTransient<MatchViewModel>()
                 .AddTransient<SettingsViewModel>()
+                .AddTransient<RoundStatsViewModel>()
                 .AddSingleton<MainViewModel>()
                 .AddSingleton<IViewFactory>(conventionViewFactory)
                 .BuildServiceProvider()

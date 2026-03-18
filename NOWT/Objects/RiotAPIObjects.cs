@@ -1173,3 +1173,181 @@ public class Ping
     [JsonPropertyName("GamePodID")]
     public string GamePodId { get; set; }
 }
+
+// Player stats response classes
+public class PlayerStatsData
+{
+    public string HeadshotPercent { get; set; }
+    public string KillDeathRatio { get; set; }
+}
+
+// Competitive updates response for getting recent matches
+public class CompetitiveUpdatesResponse
+{
+    [JsonPropertyName("Subject")]
+    public Guid Subject { get; set; }
+
+    [JsonPropertyName("Version")]
+    public long Version { get; set; }
+
+    [JsonPropertyName("Matches")]
+    public List<CompetitiveUpdateMatch> Matches { get; set; }
+}
+
+public class CompetitiveUpdateMatch
+{
+    [JsonPropertyName("MatchID")]
+    public Guid MatchId { get; set; }
+
+    [JsonPropertyName("GameStartTime")]
+    public long GameStartTime { get; set; }
+
+    [JsonPropertyName("Won")]
+    public bool Won { get; set; }
+
+    [JsonPropertyName("RankedRatingEarned")]
+    public int RankedRatingEarned { get; set; }
+}
+
+// Match details response for getting player stats
+public class MatchDetailsResponse
+{
+    [JsonPropertyName("matchInfo")]
+    public MatchInfo MatchInfo { get; set; }
+
+    [JsonPropertyName("players")]
+    public List<MatchPlayer> Players { get; set; }
+
+    [JsonPropertyName("roundResults")]
+    public List<RoundResult> RoundResults { get; set; }
+
+    [JsonPropertyName("teams")]
+    public List<TeamResult> Teams { get; set; }
+}
+
+public class MatchInfo
+{
+    [JsonPropertyName("matchId")]
+    public string MatchId { get; set; }
+
+    [JsonPropertyName("mapId")]
+    public string MapId { get; set; }
+
+    [JsonPropertyName("gameLengthMillis")]
+    public long GameLengthMillis { get; set; }
+
+    [JsonPropertyName("gameStartMillis")]
+    public long GameStartMillis { get; set; }
+
+    [JsonPropertyName("queueId")]
+    public string QueueId { get; set; }
+
+    [JsonPropertyName("isRanked")]
+    public bool IsRanked { get; set; }
+}
+
+public class MatchPlayer
+{
+    [JsonPropertyName("subject")]
+    public string Subject { get; set; }
+
+    [JsonPropertyName("teamId")]
+    public string TeamId { get; set; }
+
+    [JsonPropertyName("characterId")]
+    public string CharacterId { get; set; }
+
+    [JsonPropertyName("stats")]
+    public PlayerStats Stats { get; set; }
+}
+
+public class PlayerStats
+{
+    [JsonPropertyName("kills")]
+    public int Kills { get; set; }
+
+    [JsonPropertyName("deaths")]
+    public int Deaths { get; set; }
+
+    [JsonPropertyName("assists")]
+    public int Assists { get; set; }
+
+    [JsonPropertyName("score")]
+    public int Score { get; set; }
+}
+
+public class RoundResult
+{
+    [JsonPropertyName("roundNum")]
+    public int RoundNum { get; set; }
+
+    [JsonPropertyName("roundResult")]
+    public string RoundResultCode { get; set; }
+
+    [JsonPropertyName("playerStats")]
+    public List<PlayerStatsInRound> PlayerStats { get; set; }
+}
+
+public class PlayerStatsInRound
+{
+    [JsonPropertyName("subject")]
+    public string Subject { get; set; }
+
+    [JsonPropertyName("damage")]
+    public List<DamageInfo> Damage { get; set; }
+}
+
+public class DamageInfo
+{
+    [JsonPropertyName("receiver")]
+    public string Receiver { get; set; }
+
+    [JsonPropertyName("damage")]
+    public int Damage { get; set; }
+
+    [JsonPropertyName("legshots")]
+    public int LegShots { get; set; }
+
+    [JsonPropertyName("bodyshots")]
+    public int BodyShots { get; set; }
+
+    [JsonPropertyName("headshots")]
+    public int HeadShots { get; set; }
+}
+
+public class TeamResult
+{
+    [JsonPropertyName("teamId")]
+    public string TeamId { get; set; }
+
+    [JsonPropertyName("won")]
+    public bool Won { get; set; }
+
+    [JsonPropertyName("roundsPlayed")]
+    public int RoundsPlayed { get; set; }
+
+    [JsonPropertyName("roundsWon")]
+    public int RoundsWon { get; set; }
+}
+
+// Leaderboard response
+public class LeaderboardResponse
+{
+    [JsonPropertyName("players")]
+    public List<LeaderboardPlayer> Players { get; set; }
+}
+
+public class LeaderboardPlayer
+{
+    [JsonPropertyName("Subject")]
+    public string Subject { get; set; }
+
+    [JsonPropertyName("LeaderboardRank")]
+    public int LeaderboardRank { get; set; }
+
+    [JsonPropertyName("RankedRating")]
+    public int RankedRating { get; set; }
+
+    [JsonPropertyName("NumberOfWins")]
+    public int NumberOfWins { get; set; }
+}

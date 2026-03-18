@@ -237,6 +237,23 @@ public partial class MatchHistoryData
 
     [ObservableProperty]
     private int _rankProgress;
+
+    [ObservableProperty]
+    private int _matchesPlayedTogether;
+
+    [ObservableProperty]
+    private string _lastPlayedTime;
+}
+
+public class MatchHistoryEntry
+{
+    public string MatchId { get; set; }
+    public DateTime Timestamp { get; set; }
+    public string Agent { get; set; }
+    public int Kills { get; set; }
+    public int Deaths { get; set; }
+    public int Assists { get; set; }
+    public bool Won { get; set; }
 }
 
 public class ValMap
@@ -315,6 +332,46 @@ public partial class Player
 
     [ObservableProperty]
     private bool _isAgentLocked;
+
+    // New properties for enhanced features
+    [ObservableProperty]
+    private double _headshotPercent;
+
+    [ObservableProperty]
+    private double _winRate;
+
+    [ObservableProperty]
+    private int _gamesPlayed;
+
+    [ObservableProperty]
+    private int _leaderboardPosition;
+
+    [ObservableProperty]
+    private string _partyIcon;
+
+    [ObservableProperty]
+    private string _previousRankName;
+
+    [ObservableProperty]
+    private string _peakRankName;
+
+    [ObservableProperty]
+    private int _matchesPlayedTogether;
+
+    [ObservableProperty]
+    private string _lastPlayedTime;
+
+    [ObservableProperty]
+    private string _playerName;
+
+    [ObservableProperty]
+    private string _playerTag;
+
+    [ObservableProperty]
+    private string _playerUuid;
+
+    [ObservableProperty]
+    private double _killDeathRatio;
 }
 
 [INotifyPropertyChanged]
@@ -331,4 +388,23 @@ public partial class LoadingOverlay
 
     [ObservableProperty]
     private int _progress;
+}
+
+[INotifyPropertyChanged]
+public partial class RoundStat
+{
+    [ObservableProperty]
+    private int _roundNumber;
+
+    [ObservableProperty]
+    private int _playerKills;
+
+    [ObservableProperty]
+    private int _playerDeaths;
+
+    [ObservableProperty]
+    private int _opponentKills;
+
+    [ObservableProperty]
+    private int _opponentDeaths;
 }

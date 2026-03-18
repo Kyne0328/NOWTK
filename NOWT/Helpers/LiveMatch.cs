@@ -203,6 +203,40 @@ public class LiveMatch
             player.TeamId = teamId;
             player.Active = Visibility.Visible;
             player.IsAgentLocked = riotPlayer.CharacterSelectionState == "locked";
+
+            // Set Uuid and basic info
+            player.PlayerUuid = riotPlayer.Subject.ToString();
+            
+            // Assuming IgnData has Username in format Name#Tag
+            if (player.IgnData?.Username != null && player.IgnData.Username.Contains("#"))
+            {
+                var parts = player.IgnData.Username.Split('#');
+                player.PlayerName = parts[0];
+                player.PlayerTag = parts[1];
+            }
+            else
+            {
+                player.PlayerName = player.IgnData?.Username ?? "Unknown";
+                player.PlayerTag = "";
+            }
+
+            // Fetch enhanced stats
+            var stats = await GetPlayerStatsAsync(player.PlayerUuid);
+            player.HeadshotPercent = double.TryParse(stats.HeadshotPercent, out var hs) ? hs : 0;
+            player.KillDeathRatio = double.TryParse(stats.KillDeathRatio, out var kd) ? kd : 0;
+            player.WinRate = 50.0; // Mock or calculate from match history
+            player.LeaderboardPosition = await GetLeaderboardPositionAsync(player.PlayerUuid);
+            player.MatchesPlayedTogether = PlayerHistoryHelper.GetMatchesPlayedTogether(player.PlayerUuid);
+            player.LastPlayedTime = PlayerHistoryHelper.GetLastPlayedTime(player.PlayerUuid);
+
+            // Record match entry
+            PlayerHistoryHelper.AddMatchEntry(player.PlayerUuid, new MatchHistoryEntry
+            {
+                MatchId = Matchid.ToString(),
+                Timestamp = DateTime.Now,
+                Agent = player.IdentityData?.Name ?? "Unknown"
+            });
+            await PlayerHistoryHelper.SaveHistoryAsync();
         }
         catch (Exception e)
         {
@@ -250,6 +284,40 @@ public class LiveMatch
             player.Active = Visibility.Visible;
             // For live matches, agents are always locked/selected
             player.IsAgentLocked = true;
+
+            // Set Uuid and basic info
+            player.PlayerUuid = riotPlayer.Subject.ToString();
+            
+            // Assuming IgnData has Username in format Name#Tag
+            if (player.IgnData?.Username != null && player.IgnData.Username.Contains("#"))
+            {
+                var parts = player.IgnData.Username.Split('#');
+                player.PlayerName = parts[0];
+                player.PlayerTag = parts[1];
+            }
+            else
+            {
+                player.PlayerName = player.IgnData?.Username ?? "Unknown";
+                player.PlayerTag = "";
+            }
+
+            // Fetch enhanced stats
+            var stats = await GetPlayerStatsAsync(player.PlayerUuid);
+            player.HeadshotPercent = double.TryParse(stats.HeadshotPercent, out var hs) ? hs : 0;
+            player.KillDeathRatio = double.TryParse(stats.KillDeathRatio, out var kd) ? kd : 0;
+            player.WinRate = 50.0; // Mock or calculate from match history
+            player.LeaderboardPosition = await GetLeaderboardPositionAsync(player.PlayerUuid);
+            player.MatchesPlayedTogether = PlayerHistoryHelper.GetMatchesPlayedTogether(player.PlayerUuid);
+            player.LastPlayedTime = PlayerHistoryHelper.GetLastPlayedTime(player.PlayerUuid);
+
+            // Record match entry
+            PlayerHistoryHelper.AddMatchEntry(player.PlayerUuid, new MatchHistoryEntry
+            {
+                MatchId = Matchid.ToString(),
+                Timestamp = DateTime.Now,
+                Agent = player.IdentityData?.Name ?? "Unknown"
+            });
+            await PlayerHistoryHelper.SaveHistoryAsync();
         }
         catch (Exception e)
         {
@@ -1405,5 +1473,171 @@ public class LiveMatch
         }
 
         return playerUiData;
+    }
+
+    // Get player stats including headshot percentage, KD, etc.
+    public static async Task<PlayerStatsData> GetPlayerStatsAsync(string puuid)
+    {
+        try
+        {
+            // First, get recent competitive matches
+            var client = new RestClient(
+                $"https://pd.{Constants.Shard}.a.pvp.net/mmr/v1/players/{puuid}/competitiveupdates?startIndex=0&endIndex=1&queue=competitive"
+            );
+            var request = new RestRequest();
+            request.AddHeader("X-Riot-Entitlements-JWT", Constants.EntitlementToken);
+            request.AddHeader("Authorization", $"Bearer {Constants.AccessToken}");
+            request.AddHeader("X-Riot-ClientPlatform", Constants.Platform);
+            request.AddHeader("X-Riot-ClientVersion", Constants.Version);
+            
+            var response = await client.ExecuteGetAsync<CompetitiveUpdatesResponse>(request).ConfigureAwait(false);
+            
+            if (!response.IsSuccessful || response.Data?.Matches == null || response.Data.Matches.Count == 0)
+            {
+                return new PlayerStatsData { HeadshotPercent = "N/A", KillDeathRatio = "N/A" };
+            }
+
+            var matchId = response.Data.Matches[0].MatchId;
+            
+            // Get match details
+            client = new RestClient(
+                $"https://pd.{Constants.Shard}.a.pvp.net/match-details/v1/matches/{matchId}"
+            );
+            response = await client.ExecuteGetAsync<MatchDetailsResponse>(request).ConfigureAwait(false);
+            
+            if (!response.IsSuccessful)
+            {
+                return new PlayerStatsData { HeadshotPercent = "N/A", KillDeathRatio = "N/A" };
+            }
+
+            var matchData = response.Data;
+            
+            // Calculate stats
+            return CalculatePlayerStats(puuid, matchData);
+        }
+        catch (Exception ex)
+        {
+            Constants.Log.Error("GetPlayerStatsAsync failed: {Message}", ex.Message);
+            return new PlayerStatsData { HeadshotPercent = "N/A", KillDeathRatio = "N/A" };
+        }
+    }
+
+    private static PlayerStatsData CalculatePlayerStats(string puuid, MatchDetailsResponse matchData)
+    {
+        int totalHits = 0;
+        int totalHeadshots = 0;
+        int kills = 0;
+        int deaths = 0;
+
+        // Extract round stats
+        foreach (var round in matchData.RoundResults ?? Enumerable.Empty<RoundResult>())
+        {
+            foreach (var player in round.PlayerStats ?? Enumerable.Empty<PlayerStatsInRound>())
+            {
+                if (player.Subject == puuid)
+                {
+                    foreach (var damage in player.Damage ?? Enumerable.Empty<DamageInfo>())
+                    {
+                        totalHits += damage.LegShots + damage.BodyShots + damage.HeadShots;
+                        totalHeadshots += damage.HeadShots;
+                    }
+                }
+            }
+        }
+
+        // Extract overall player stats
+        foreach (var player in matchData.Players ?? Enumerable.Empty<MatchPlayer>())
+        {
+            if (player.Subject == puuid)
+            {
+                kills = player.Stats?.Kills ?? 0;
+                deaths = player.Stats?.Deaths ?? 0;
+                break;
+            }
+        }
+
+        // Calculate KD
+        string kd = deaths > 0 ? Math.Round((double)kills / deaths, 2).ToString() : kills.ToString();
+
+        // Calculate headshot percentage
+        string hs = totalHits > 0 ? Math.Round((double)totalHeadshots / totalHits * 100).ToString() : "N/A";
+
+        return new PlayerStatsData
+        {
+            HeadshotPercent = hs,
+            KillDeathRatio = kd
+        };
+    }
+
+    // Get leaderboard position for a player
+    public static async Task<int> GetLeaderboardPositionAsync(string puuid)
+    {
+        try
+        {
+            var client = new RestClient(
+                $"https://pd.{Constants.Shard}.a.pvp.net/mmr/v1/leaderboards/affinity/{Constants.Shard}/queue/competitive/season/{Constants.SeasonId}?startIndex=0&size=500&query={puuid}"
+            );
+            var request = new RestRequest();
+            request.AddHeader("X-Riot-Entitlements-JWT", Constants.EntitlementToken);
+            request.AddHeader("Authorization", $"Bearer {Constants.AccessToken}");
+            request.AddHeader("X-Riot-ClientPlatform", Constants.Platform);
+            request.AddHeader("X-Riot-ClientVersion", Constants.Version);
+            
+            var response = await client.ExecuteGetAsync<LeaderboardResponse>(request).ConfigureAwait(false);
+            
+            if (!response.IsSuccessful || response.Data?.Players == null)
+            {
+                return 0;
+            }
+
+            var player = response.Data.Players.FirstOrDefault(p => p.Subject == puuid);
+            return player?.LeaderboardRank ?? 0;
+        }
+        catch (Exception ex)
+        {
+            Constants.Log.Error("GetLeaderboardPositionAsync failed: {Message}", ex.Message);
+            return 0;
+        }
+    }
+
+    // Get player's match history for tracking times played together
+    public static async Task<List<MatchHistoryEntry>> GetPlayerMatchHistoryAsync(string puuid, int count = 50)
+    {
+        try
+        {
+            var client = new RestClient(
+                $"https://pd.{Constants.Shard}.a.pvp.net/mmr/v1/players/{puuid}/competitiveupdates?startIndex=0&endIndex={count}"
+            );
+            var request = new RestRequest();
+            request.AddHeader("X-Riot-Entitlements-JWT", Constants.EntitlementToken);
+            request.AddHeader("Authorization", $"Bearer {Constants.AccessToken}");
+            request.AddHeader("X-Riot-ClientPlatform", Constants.Platform);
+            request.AddHeader("X-Riot-ClientVersion", Constants.Version);
+            
+            var response = await client.ExecuteGetAsync<CompetitiveUpdatesResponse>(request).ConfigureAwait(false);
+            
+            if (!response.IsSuccessful || response.Data?.Matches == null)
+            {
+                return new List<MatchHistoryEntry>();
+            }
+
+            var history = new List<MatchHistoryEntry>();
+            foreach (var match in response.Data.Matches)
+            {
+                history.Add(new MatchHistoryEntry
+                {
+                    MatchId = match.MatchId.ToString(),
+                    Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(match.GameStartTime).DateTime,
+                    Won = match.Won
+                });
+            }
+
+            return history;
+        }
+        catch (Exception ex)
+        {
+            Constants.Log.Error("GetPlayerMatchHistoryAsync failed: {Message}", ex.Message);
+            return new List<MatchHistoryEntry>();
+        }
     }
 }
