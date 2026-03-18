@@ -287,7 +287,6 @@ public class RiotPrePlayer
     public Guid Subject { get; set; }
 
     [JsonPropertyName("CharacterID")]
-    [JsonIgnore]
     public Guid CharacterId { get; set; }
 
     [JsonPropertyName("CharacterSelectionState")]

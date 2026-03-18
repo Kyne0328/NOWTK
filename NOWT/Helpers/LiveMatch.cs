@@ -175,13 +175,17 @@ public class LiveMatch
         Player player = new();
         try
         {
-            var agentTask = GetAgentInfoAsync(riotPlayer.CharacterId);
+            // If a character has been selected/locked, show agent image; otherwise fall back to player card
+            var hasAgent = riotPlayer.CharacterId != Guid.Empty;
+            Task<IdentityData> identityTask = hasAgent
+                ? GetAgentInfoAsync(riotPlayer.CharacterId)
+                : GetCardAsync(riotPlayer.PlayerIdentity.PlayerCardId, index);
             var historyTask = GetPlayerHistoryAsync(riotPlayer.Subject, seasonData);
             var presenceTask = GetPresenceInfoAsync(riotPlayer.Subject, presencesResponse);
 
-            await Task.WhenAll(agentTask, historyTask, presenceTask).ConfigureAwait(false);
+            await Task.WhenAll(identityTask, historyTask, presenceTask).ConfigureAwait(false);
 
-            player.IdentityData = agentTask.Result;
+            player.IdentityData = identityTask.Result;
             player.RankData = historyTask.Result;
             player.PlayerUiData = presenceTask.Result;
             player.IgnData = await GetIgcUsernameAsync(
@@ -265,19 +269,37 @@ public class LiveMatch
         sbyte index = 0;
 
         // Process ally team
-        foreach (var riotPlayer in matchIdInfo.AllyTeam.Players)
+        if (matchIdInfo.AllyTeam?.Players != null)
         {
-            playerTasks.Add(GetPrePlayerInfo(riotPlayer, index, seasonData, presencesResponse, "Blue"));
-            index++;
+            foreach (var riotPlayer in matchIdInfo.AllyTeam.Players)
+            {
+                playerTasks.Add(GetPrePlayerInfo(riotPlayer, index, seasonData, presencesResponse, "Blue"));
+                index++;
+            }
         }
 
-        // Process enemy team
-        if (matchIdInfo.EnemyTeam != null && matchIdInfo.EnemyTeam.Players != null)
+        // Process enemy team - try EnemyTeam first, fall back to Teams array
+        if (matchIdInfo.EnemyTeam?.Players != null)
         {
             foreach (var riotPlayer in matchIdInfo.EnemyTeam.Players)
             {
                 playerTasks.Add(GetPrePlayerInfo(riotPlayer, index, seasonData, presencesResponse, "Red"));
                 index++;
+            }
+        }
+        else if (matchIdInfo.Teams != null)
+        {
+            // Fallback: use Teams array to find enemy team
+            foreach (var team in matchIdInfo.Teams)
+            {
+                if (team.TeamId != matchIdInfo.AllyTeam?.TeamId && team.Players != null)
+                {
+                    foreach (var riotPlayer in team.Players)
+                    {
+                        playerTasks.Add(GetPrePlayerInfo(riotPlayer, index, seasonData, presencesResponse, "Red"));
+                        index++;
+                    }
+                }
             }
         }
     }
